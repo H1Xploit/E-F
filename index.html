@@ -1,122 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Undangan Pernikahan Endi & Fauziah</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #2c2c2c; /* Background gelap */
-            font-family: 'Times New Roman', Times, serif;
-            color: white; /* Warna teks putih untuk kontras */
-            overflow-x: hidden;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            margin-top: 100px;
-            opacity: 0; /* Konten dimulai dengan opacity 0 */
-            transition: opacity 1s ease-in-out; /* Transisi opacity saat muncul */
-            position: relative; /* Posisi relatif untuk memastikan elemen tidak tertutup */
-            z-index: 1; /* Pastikan konten berada di atas elemen lain */
-        }
-        .container.visible {
-            opacity: 1; /* Konten akan muncul dengan opacity 1 */
-        }
-        h1 {
-            font-size: 3em;
-            color: #FFD700; /* Warna teks emas */
-        }
-        .gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #2c2c2c; /* Background gelap untuk gerbang */
-            z-index: 10; /* Pastikan gerbang berada di atas konten */
-        }
-        .gate-left, .gate-right {
-            position: absolute;
-            height: 100%;
-            width: 50%;
-            background-color: #FFD700; /* Warna gerbang emas */
-            transition: transform 2s ease-in-out;
-        }
-        .gate-left {
-            left: 0;
-            transform: translateX(0);
-        }
-        .gate-right {
-            right: 0;
-            transform: translateX(0);
-        }
-        .gate.open .gate-left {
-            transform: translateX(-100%);
-        }
-        .gate.open .gate-right {
-            transform: translateX(100%);
-        }
-        p {
-            font-size: 1.2em;
-            color: white; /* Teks putih untuk kontras */
-        }
-        .highlight {
-            font-size: 2em;
-            font-weight: bold;
-            color: #FFD700; /* Warna emas */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Undangan Pernikahan Endi Waluyo & Fauziah</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .gate {
+      position: fixed;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      background-color: #8B4513;
+      transition: transform 1s ease;
+    }
+
+    .left-gate {
+      left: 0;
+      transform: translateX(0);
+    }
+
+    .right-gate {
+      right: 0;
+      transform: translateX(0);
+    }
+
+    .gate.open-left {
+      transform: translateX(-100%);
+    }
+
+    .gate.open-right {
+      transform: translateX(100%);
+    }
+
+    .container {
+      height: 200vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-top: 150px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .container.visible {
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .akad {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .guest-name {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+
+  </style>
 </head>
 <body>
 
-    <!-- Gerbang -->
-    <div class="gate">
-        <div class="gate-left"></div>
-        <div class="gate-right"></div>
-    </div>
+<div class="gate left-gate"></div>
+<div class="gate right-gate"></div>
 
-    <!-- Konten Undangan -->
-    <div class="container" id="content">
-        <h1>Undangan Pernikahan</h1>
-        <p>Kepada Yth, <span id="guestName" class="highlight"></span></p>
-        <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk menghadiri pernikahan kami.</p>
-        <h1 class="highlight">Endi Waluyo & Fauziah</h1>
-        <p>Akad nikah akan dilaksanakan pada <b>7 Oktober 2024</b> di kediaman mempelai wanita.</p>
-        <p>Kami sangat berharap kehadiran dan doa restu Anda.</p>
-    </div>
+<div class="container">
+  <h1>Endi Waluyo & Fauziah</h1>
+  <h2>Undangan Pernikahan</h2>
+  <p class="akad">Akad: 7 Oktober 2024, di kediaman mempelai wanita</p>
+  <p class="guest-name"></p>
+</div>
 
-    <script>
-        // Fungsi untuk membuka gerbang secara otomatis setelah 2 detik
-        window.onload = function() {
-            setTimeout(function() {
-                const gate = document.querySelector('.gate');
-                gate.classList.add('open');
-                document.getElementById('content').classList.add('visible');
-            }, 2000);
+<script>
+  // Fungsi untuk mendapatkan parameter URL dengan proteksi XSS dasar
+  function getSafeParameterByName(name) {
+    const url = new URL(window.location.href);
+    let param = url.searchParams.get(name);
+    if (param) {
+      param = param.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      return decodeURIComponent(param);
+    }
+    return null;
+  }
 
-            // Ambil parameter URL 'to' untuk nama tamu dan cegah XSS
-            const guestName = getUrlParameter('to');
-            const nameField = document.getElementById('guestName');
-            nameField.textContent = guestName ? guestName
-                            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
-        };
+  // Animasi membuka dan menutup gerbang berdasarkan scroll
+  window.addEventListener('scroll', function() {
+    const leftGate = document.querySelector('.left-gate');
+    const rightGate = document.querySelector('.right-gate');
+    const container = document.querySelector('.container');
+    
+    if (window.scrollY > 50) {
+      leftGate.classList.add('open-left');
+      rightGate.classList.add('open-right');
+      container.classList.add('visible');
+    } else {
+      leftGate.classList.remove('open-left');
+      rightGate.classList.remove('open-right');
+      container.classList.remove('visible');
+    }
+  });
 
-        // Fungsi untuk mengambil parameter dari URL dan hindari XSS
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            const results = regex.exec(window.location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-    </script>
+  // Menampilkan nama tamu yang diundang dari parameter URL
+  const guestName = getSafeParameterByName('to');
+  if (guestName) {
+    document.querySelector('.guest-name').textContent = `Kepada Yth: ${guestName}`;
+  } else {
+    document.querySelector('.guest-name').textContent = "Kepada Yth: Tamu Undangan";
+  }
+</script>
+
 </body>
 </html>
