@@ -10,10 +10,9 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: #fdf6e3;
+            background-color: #2c2c2c; /* Background Gelap */
             font-family: 'Times New Roman', Times, serif;
-            background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
-            background-size: cover;
+            color: white; /* Warna teks diatur agar kontras dengan background */
             overflow-x: hidden;
         }
         .container {
@@ -21,15 +20,16 @@
             padding: 20px;
             margin-top: 100px;
             visibility: hidden; /* Awalnya disembunyikan */
+            opacity: 0; /* Supaya konten memudar dengan transisi */
+            transition: opacity 1s ease-in-out; /* Efek transisi saat muncul */
         }
         .container.visible {
-            visibility: visible; /* Ditampilkan saat gerbang terbuka */
-            transition: visibility 0s, opacity 1s ease-in; /* Transisi opacity tetap lembut */
-            opacity: 1;
+            visibility: visible;
+            opacity: 1; /* Tampilkan konten dengan transisi */
         }
         h1 {
             font-size: 3em;
-            color: #c47f55;
+            color: #FFD700; /* Warna teks emas */
         }
         .gate {
             position: fixed;
@@ -42,13 +42,13 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background-color: #fdf6e3;
+            background-color: #2c2c2c;
         }
         .gate-left, .gate-right {
             position: absolute;
             height: 100%;
             width: 50%;
-            background-color: #c47f55;
+            background-color: #FFD700; /* Warna gerbang emas */
             z-index: 5;
             transition: transform 2s ease-in-out;
         }
@@ -68,12 +68,12 @@
         }
         p {
             font-size: 1.2em;
-            color: #333;
+            color: white; /* Sesuaikan dengan background */
         }
         .highlight {
             font-size: 2em;
             font-weight: bold;
-            color: #c47f55;
+            color: #FFD700; /* Warna emas */
         }
     </style>
 </head>
