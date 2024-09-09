@@ -78,26 +78,27 @@
 
         /* Efek surat */
         .letter-container {
-            width: 80%;
-            height: 80%;
+            width: 90%;
+            max-width: 600px;
+            height: auto;
             position: absolute;
-            top: 0;
-            left: 0;
-            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/isi.png') no-repeat center;
-            background-size: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
+            overflow: hidden;
+            background: #fff;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
-            transform: scale(0.9);
-            opacity: 0;
-            transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
-            overflow: hidden;
+            border: 5px solid #e6d8b8;
+            position: relative; /* Untuk penempatan tombol tutup */
         }
 
         .letter-container.open {
-            transform: scale(1);
+            transform: translate(-50%, -50%) scale(1);
             opacity: 1;
         }
 
@@ -120,19 +121,21 @@
             margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
         }
 
-        /* Tombol tutup dengan X transparan */
-        #closeBtn {
-            background: url('https://img.icons8.com/material-outlined/24/000000/delete.png') no-repeat center;
-            background-size: contain;
-            width: 30px;
-            height: 30px;
-            border: none;
-            cursor: pointer;
+        /* Tombol tutup */
+        .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: transparent;
-            box-shadow: none;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #a66d45;
         }
 
         /* Animasi Percikan */
@@ -220,7 +223,7 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button id="closeBtn"></button> <!-- Tombol tutup dengan X transparan -->
+            <button class="close-btn" id="closeBtn">&times;</button>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
