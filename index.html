@@ -1,132 +1,94 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Undangan Pernikahan Endi Waluyo & Fauziah</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffcccc 50%, #fff 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+        h1 {
+            font-size: 3em;
+            color: #b30000;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .gate {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #b30000;
+            transition: width 2s;
+            z-index: 10;
+        }
+        .gate.right {
+            left: auto;
+            right: 0;
+        }
+    </style>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            let value = urlParams.get(param);
+            // Mencegah XSS dengan encoding karakter
+            if (value) {
+                value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            }
+            return value;
+        }
 
-    .gate {
-      position: fixed;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      background-color: #8B4513;
-      transition: transform 1s ease;
-    }
+        function openGates() {
+            document.querySelectorAll('.gate').forEach(gate => {
+                gate.style.width = '0';
+            });
+            document.querySelector('.container').style.opacity = '1';
+        }
 
-    .left-gate {
-      left: 0;
-      transform: translateX(0);
-    }
-
-    .right-gate {
-      right: 0;
-      transform: translateX(0);
-    }
-
-    .gate.open-left {
-      transform: translateX(-100%);
-    }
-
-    .gate.open-right {
-      transform: translateX(100%);
-    }
-
-    .container {
-      height: 200vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      padding-top: 150px;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .container.visible {
-      opacity: 1;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: #333;
-    }
-
-    .akad {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    .guest-name {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-    }
-
-  </style>
+        window.onload = function() {
+            const penerima = getQueryParam('to') || 'Tamu Undangan';
+            document.getElementById('penerima').textContent = penerima;
+            setTimeout(openGates, 500);
+        };
+    </script>
 </head>
 <body>
+    <div class="gate"></div>
+    <div class="gate right"></div>
 
-<div class="gate left-gate"></div>
-<div class="gate right-gate"></div>
-
-<div class="container">
-  <h1>Endi Waluyo & Fauziah</h1>
-  <h2>Undangan Pernikahan</h2>
-  <p class="akad">Akad: 7 Oktober 2024, di kediaman mempelai wanita</p>
-  <p class="guest-name"></p>
-</div>
-
-<script>
-  // Fungsi untuk mendapatkan parameter URL dengan proteksi XSS dasar
-  function getSafeParameterByName(name) {
-    const url = new URL(window.location.href);
-    let param = url.searchParams.get(name);
-    if (param) {
-      param = param.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      return decodeURIComponent(param);
-    }
-    return null;
-  }
-
-  // Animasi membuka dan menutup gerbang berdasarkan scroll
-  window.addEventListener('scroll', function() {
-    const leftGate = document.querySelector('.left-gate');
-    const rightGate = document.querySelector('.right-gate');
-    const container = document.querySelector('.container');
-    
-    if (window.scrollY > 50) {
-      leftGate.classList.add('open-left');
-      rightGate.classList.add('open-right');
-      container.classList.add('visible');
-    } else {
-      leftGate.classList.remove('open-left');
-      rightGate.classList.remove('open-right');
-      container.classList.remove('visible');
-    }
-  });
-
-  // Menampilkan nama tamu yang diundang dari parameter URL
-  const guestName = getSafeParameterByName('to');
-  if (guestName) {
-    document.querySelector('.guest-name').textContent = `Kepada Yth: ${guestName}`;
-  } else {
-    document.querySelector('.guest-name').textContent = "Kepada Yth: Tamu Undangan";
-  }
-</script>
-
+    <div class="container">
+        <h1>Endi Waluyo & Fauziah</h1>
+        <h2>Dengan segala hormat, kami mengundang:</h2>
+        <p id="penerima">Tamu Undangan</p>
+        <p>Untuk menghadiri acara akad nikah kami yang akan diselenggarakan pada:</p>
+        <p><strong>7 Oktober 2024</strong> di kediaman mempelai wanita.</p>
+        <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+        <p>Hormat kami,</p>
+        <p><strong>Endi Waluyo & Fauziah</strong></p>
+    </div>
 </body>
 </html>
