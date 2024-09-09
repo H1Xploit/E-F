@@ -18,20 +18,32 @@
         html, body {
             height: 100%;
             font-family: 'Lora', serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
+            overflow: hidden; /* Menghilangkan scroll */
         }
 
         body {
             background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/e9a7f6d028fcaf00d24446f536512c9fc2c83ab4/bg.svg');
-            background-size: cover;
+            background-size: contain; /* Background sesuai ukuran layar tanpa terpotong */
             background-position: center;
             background-repeat: no-repeat;
-            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
+            text-align: center;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards; /* Efek pembukaan */
+        }
+
+        /* Efek pembukaan halaman */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .container {
@@ -46,12 +58,18 @@
             font-family: 'Great Vibes', cursive;
             font-size: 3em;
             margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInText 2s ease-in forwards; /* Efek fade-in untuk teks */
+            animation-delay: 1s;
         }
 
         p {
             font-family: 'Lora', serif;
             font-size: 1.2em;
             margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInText 2s ease-in forwards;
+            animation-delay: 1.5s;
         }
 
         .date-location {
@@ -62,6 +80,21 @@
             font-size: 1.5em;
             margin-bottom: 20px;
             color: #ffd700;
+            opacity: 0;
+            animation: fadeInText 2s ease-in forwards;
+            animation-delay: 2s;
+        }
+
+        /* Animasi untuk teks agar muncul secara bertahap */
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
