@@ -17,82 +17,45 @@
             font-family: 'Great Vibes', cursive;
             background-color: #f3efe1;
             color: #333;
-            overflow-x: hidden;
+            overflow: hidden;
+            height: 100vh;
+            display: grid;
+            place-items: center;
         }
 
-        header {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        .content-wrapper {
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
             position: relative;
+            overflow: hidden;
         }
 
-        h1 {
+        .header-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .header-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #8b5e34;
-            text-align: center;
             animation: fadeIn 2s ease-in-out;
         }
 
-        p {
+        .header-content p {
             font-size: 1.5rem;
-            text-align: center;
             color: #8b5e34;
             animation: fadeIn 3s ease-in-out;
         }
 
-        /* Animasi */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        section {
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-        }
-
-        /* Efek surat */
-        .letter-container {
-            width: 100%;
-            max-width: 600px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            text-align: center;
-            display: none;
-            overflow: hidden;
-        }
-
-        .letter h2 {
-            font-size: 2rem;
-            color: #8b5e34;
-            margin-bottom: 1.5rem;
-        }
-
-        .letter p {
-            font-size: 1.2rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        /* Tombol */
         .btn-container {
-            text-align: center;
             margin-top: 2rem;
         }
 
@@ -111,40 +74,57 @@
             background-color: #a66d45;
         }
 
-        /* Animasi slide */
-        .slide-down {
-            animation: slideDown 0.5s forwards;
+        /* Efek surat */
+        .letter-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+            overflow: hidden;
         }
 
-        .slide-up {
-            animation: slideUp 0.5s forwards;
+        .letter-container.open {
+            transform: translateY(0);
         }
 
-        @keyframes slideDown {
+        .letter h2 {
+            font-size: 2rem;
+            color: #8b5e34;
+            margin-bottom: 1.5rem;
+        }
+
+        .letter p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
             from {
-                max-height: 0;
+                opacity: 0;
             }
             to {
-                max-height: 500px;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                max-height: 500px;
-            }
-            to {
-                max-height: 0;
+                opacity: 1;
             }
         }
 
         /* Responsif */
         @media (max-width: 768px) {
-            h1 {
+            .header-content h1 {
                 font-size: 2.5rem;
             }
 
-            p {
+            .header-content p {
                 font-size: 1.2rem;
             }
 
@@ -159,15 +139,14 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Undangan Pernikahan</h1>
-        <p>Endi & Fauziah</p>
-        <div class="btn-container">
-            <button class="btn" id="openBtn">Buka Surat</button>
+    <div class="content-wrapper">
+        <div class="header-content" id="headerContent">
+            <h1>Undangan Pernikahan</h1>
+            <p>Yth. Daeng</p>
+            <div class="btn-container">
+                <button class="btn" id="openBtn">Buka Surat</button>
+            </div>
         </div>
-    </header>
-
-    <section>
         <div class="letter-container" id="letterContent">
             <div class="btn-container">
                 <button class="btn" id="closeBtn">Tutup Surat</button>
@@ -189,30 +168,25 @@
                 </p>
             </div>
         </div>
-    </section>
+    </div>
 
     <script>
         // Mengambil elemen
         const openBtn = document.getElementById('openBtn');
         const closeBtn = document.getElementById('closeBtn');
         const letterContent = document.getElementById('letterContent');
+        const headerContent = document.getElementById('headerContent');
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
-            letterContent.style.display = 'block';
-            letterContent.classList.remove('slide-up');
-            letterContent.classList.add('slide-down');
-            openBtn.style.display = 'none';
+            letterContent.classList.add('open');
+            headerContent.style.display = 'none';
         });
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
-            letterContent.classList.remove('slide-down');
-            letterContent.classList.add('slide-up');
-            setTimeout(() => {
-                letterContent.style.display = 'none';
-                openBtn.style.display = 'inline-block';
-            }, 500); // Delay sesuai dengan durasi animasi
+            letterContent.classList.remove('open');
+            headerContent.style.display = 'block';
         });
 
         // XSS protection
