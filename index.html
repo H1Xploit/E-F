@@ -15,26 +15,29 @@
         /* Styling Umum */
         body {
             font-family: 'Great Vibes', cursive;
-            background-color: #f3efe1;
+            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/background.png') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
             overflow: hidden;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            place-items: center;
         }
 
         .content-wrapper {
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
             position: relative;
-            width: 80%;
-            height: 80%;
-            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
         }
 
         .header-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
         }
@@ -80,25 +83,20 @@
             position: absolute;
             top: 0;
             left: 0;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            padding: 3rem;
+            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/isi.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            padding: 2rem;
             text-align: center;
-            border: 5px solid #e6d8b8;
             transform: scale(0.9);
             opacity: 0;
             transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
         }
 
         .letter-container.open {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
             opacity: 1;
         }
 
@@ -121,22 +119,21 @@
             margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
         }
 
-        /* Tombol Tutup X Transparan */
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        /* Tombol tutup */
+        #closeBtn {
             background: transparent;
-            border: none;
+            color: #8b5e34;
             font-size: 2rem;
-            color: #333;
+            border: none;
             cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             transition: color 0.3s;
-            z-index: 20;
         }
 
-        .close-btn:hover {
-            color: #8b5e34;
+        #closeBtn:hover {
+            color: #a66d45;
         }
 
         /* Animasi Percikan */
@@ -204,12 +201,6 @@
                 font-size: 1.2rem;
             }
 
-            .letter-container {
-                width: 90%;
-                height: 90%;
-                padding: 2rem;
-            }
-
             .letter h2 {
                 font-size: 1.8rem;
             }
@@ -230,7 +221,7 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button class="close-btn" id="closeBtn">×</button>
+            <button id="closeBtn">X</button>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
