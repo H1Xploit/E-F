@@ -14,11 +14,17 @@
             font-family: 'Times New Roman', Times, serif;
             background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
             background-size: cover;
+            overflow-x: hidden;
         }
         .container {
             text-align: center;
             padding: 20px;
             margin-top: 100px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .container.visible {
+            opacity: 1;
         }
         h1 {
             font-size: 3em;
@@ -35,6 +41,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            background-color: #fdf6e3;
         }
         .gate-left, .gate-right {
             position: absolute;
@@ -58,13 +65,6 @@
         .gate.open .gate-right {
             transform: translateX(100%);
         }
-        .content {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .show-content .content {
-            opacity: 1;
-        }
         p {
             font-size: 1.2em;
             color: #333;
@@ -77,12 +77,15 @@
     </style>
 </head>
 <body>
+
+    <!-- Gerbang -->
     <div class="gate">
         <div class="gate-left"></div>
         <div class="gate-right"></div>
     </div>
 
-    <div class="container">
+    <!-- Konten Undangan -->
+    <div class="container" id="content">
         <h1>Undangan Pernikahan</h1>
         <p>Kepada Yth, <span id="guestName" class="highlight"></span></p>
         <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk menghadiri pernikahan kami.</p>
@@ -92,29 +95,28 @@
     </div>
 
     <script>
-        // Fungsi untuk membuka gerbang setelah scroll
-        window.addEventListener('scroll', function() {
-            const gate = document.querySelector('.gate');
-            if (window.scrollY > 100) {
+        // Fungsi untuk membuka gerbang secara otomatis setelah 2 detik
+        window.onload = function() {
+            // Buka gerbang secara otomatis setelah 2 detik
+            setTimeout(function() {
+                const gate = document.querySelector('.gate');
                 gate.classList.add('open');
-                document.body.classList.add('show-content');
-            }
-        });
+                document.getElementById('content').classList.add('visible');
+            }, 2000);
 
-        // Fungsi untuk mendapatkan parameter dari URL dan menghindari XSS
+            // Ambil parameter URL 'to' untuk nama tamu dan cegah XSS
+            const guestName = getUrlParameter('to');
+            const nameField = document.getElementById('guestName');
+            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
+        };
+
+        // Fungsi untuk mengambil parameter dari URL dan hindari XSS
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
             const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             const results = regex.exec(window.location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
-
-        // Mengambil parameter 'to' dari URL dan menampilkannya sebagai nama tamu
-        window.onload = function() {
-            const guestName = getUrlParameter('to');
-            const nameField = document.getElementById('guestName');
-            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
-        };
     </script>
 </body>
 </html>
