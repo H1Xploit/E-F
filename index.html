@@ -15,7 +15,7 @@
         /* Styling Umum */
         body {
             font-family: 'Great Vibes', cursive;
-            background-color: #f7f0e1;
+            background-color: #f3efe1;
             color: #333;
             overflow: hidden;
             height: 100vh;
@@ -28,7 +28,7 @@
             place-items: center;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #faf0e6, #e2c8a9);
+            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
             position: relative;
             overflow: hidden;
         }
@@ -45,13 +45,13 @@
         .header-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: #9d6e4a;
+            color: #8b5e34;
             animation: fadeIn 2s ease-in-out;
         }
 
         .header-content p {
             font-size: 1.5rem;
-            color: #9d6e4a;
+            color: #8b5e34;
             animation: fadeIn 3s ease-in-out;
         }
 
@@ -60,7 +60,7 @@
         }
 
         .btn {
-            background-color: #9d6e4a;
+            background-color: #8b5e34;
             color: #fff;
             padding: 0.75rem 2rem;
             border: none;
@@ -72,7 +72,7 @@
         }
 
         .btn:hover {
-            background-color: #b17c55;
+            background-color: #a66d45;
             transform: scale(1.05);
         }
 
@@ -88,7 +88,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
-            border: 3px solid #e6c5a6;
+            border: 5px solid #e6d8b8;
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
@@ -100,7 +100,7 @@
 
         .letter h2 {
             font-size: 2rem;
-            color: #9d6e4a;
+            color: #8b5e34;
             margin-bottom: 1.5rem;
         }
 
@@ -111,60 +111,63 @@
             margin-bottom: 1rem;
         }
 
+        .btn-container-bottom {
+            margin-top: 2rem;
+            margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
+        }
+
+        /* Tombol Tutup Surat */
         .close-btn {
+            background: url('https://img.icons8.com/ios-filled/50/000000/close-window.png') no-repeat center;
+            background-size: contain;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 2rem;
-            color: #9d6e4a;
-            cursor: pointer;
             z-index: 20;
+            transition: opacity 0.3s;
         }
 
-        /* Efek percikan dengan emoticon */
-        .sparkles {
+        /* Animasi Partikel */
+        .particles {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            z-index: 5;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            overflow: hidden;
             opacity: 0;
-            transform: translate(-50%, -50%);
+            z-index: 5;
+            transition: opacity 1s;
         }
 
-        .sparkles span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            font-size: 24px;
-            animation: sparkle 1s linear infinite;
+        .particles.show {
+            opacity: 1;
+            animation: particles-fall 3s ease-out forwards;
         }
 
-        .sparkles .love {
-            content: '❤️';
-        }
-
-        .sparkles .star {
-            content: '⭐';
-        }
-
-        .sparkles .moon {
-            content: '🌙';
-        }
-
-        @keyframes sparkle {
+        @keyframes particles-fall {
             0% {
-                transform: translate(0, 0) scale(0.5);
+                transform: translateY(-100%);
                 opacity: 1;
             }
             100% {
-                transform: translate(150px, -150px) scale(2);
+                transform: translateY(100%);
                 opacity: 0;
+            }
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
             }
         }
 
@@ -185,10 +188,6 @@
             .letter p {
                 font-size: 1rem;
             }
-
-            .close-btn {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
@@ -202,7 +201,10 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button class="close-btn" id="closeBtn">&times;</button>
+            <button class="close-btn" id="closeBtn"></button>
+            <div class="btn-container btn-container-bottom">
+                <!-- Tombol Tutup Surat digantikan dengan X transparan -->
+            </div>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
@@ -221,12 +223,8 @@
             </div>
         </div>
 
-        <!-- Efek Percikan -->
-        <div class="sparkles" id="sparkles">
-            <span class="love">❤️</span>
-            <span class="star">⭐</span>
-            <span class="moon">🌙</span>
-        </div>
+        <!-- Efek Partikel -->
+        <div class="particles" id="particles"></div>
     </div>
 
     <script>
@@ -235,27 +233,51 @@
         const closeBtn = document.getElementById('closeBtn');
         const letterContent = document.getElementById('letterContent');
         const headerContent = document.getElementById('headerContent');
-        const sparkles = document.getElementById('sparkles');
+        const particles = document.getElementById('particles');
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
             headerContent.style.display = 'none';
-            showSparkles();
+            showParticles();
         });
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
             headerContent.style.display = 'block';
+            hideParticles();
         });
 
-        // Efek percikan saat tombol ditekan
-        function showSparkles() {
-            sparkles.style.opacity = 1;
-            setTimeout(() => {
-                sparkles.style.opacity = 0;
-            }, 1000);
+        // Fungsi untuk menampilkan partikel
+        function showParticles() {
+            particles.classList.add('show');
+            // Generate particles
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.background = 'rgba(255, 182, 193, 0.7)'; // Warna partikel pink
+                particle.style.borderRadius = '50%';
+                particle.style.width = '10px';
+                particle.style.height = '10px';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random();
+                particle.style.transform = `translate(-50%, -50%) scale(${Math.random()})`;
+                particles.appendChild(particle);
+
+                // Animasi partikel
+                setTimeout(() => {
+                    particle.style.transform += ' translateY(100%)';
+                    particle.style.opacity = 0;
+                }, 100);
+            }
+        }
+
+        // Fungsi untuk menyembunyikan partikel
+        function hideParticles() {
+            particles.classList.remove('show');
+            particles.innerHTML = ''; // Menghapus partikel
         }
 
         // XSS protection
