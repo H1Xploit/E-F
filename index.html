@@ -19,26 +19,47 @@
             color: #333;
             overflow: hidden;
             height: 100vh;
-            display: grid;
-            place-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content-wrapper {
+            width: 90%;
+            height: 90%;
+            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .header-content {
-            text-align: center;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 10;
         }
 
         .header-content h1 {
-            font-size: 4rem;
-            color: #8b5e34;
+            font-size: 3rem;
             margin-bottom: 1rem;
+            color: #8b5e34;
             animation: fadeIn 2s ease-in-out;
         }
 
         .header-content p {
             font-size: 2rem;
             color: #8b5e34;
-            animation: fadeIn 3s ease-in-out;
+            margin-bottom: 2rem;
+            font-family: 'Roboto', sans-serif; /* Mengganti font isi surat */
+            font-weight: bold;
         }
 
         .btn-container {
@@ -51,7 +72,7 @@
             padding: 0.75rem 2rem;
             border: none;
             border-radius: 5px;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -64,14 +85,8 @@
 
         /* Efek surat */
         .letter-container {
-            width: 80%;
-            max-width: 600px;
-            height: 80%;
-            max-height: 600px;
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%, -10%);
+            width: 100%;
+            height: 100%;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -80,9 +95,10 @@
             border: 5px solid #e6d8b8;
             transform: scale(0.9);
             opacity: 0;
+            transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
-            z-index: 5;
+            position: relative;
         }
 
         .letter-container.open {
@@ -105,21 +121,18 @@
         }
 
         .letter-container .letter {
-            margin-top: 2rem; /* Margin atas untuk isi surat */
+            margin-top: 4rem; /* Menambahkan margin atas untuk isi surat */
         }
 
         .btn-container-bottom {
-            margin-top: 2rem;
-            margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
-            position: relative;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
 
         .close-btn {
             background: none;
             border: none;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             cursor: pointer;
             width: 40px;
             height: 40px;
@@ -201,7 +214,7 @@
             }
 
             .header-content p {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .letter h2 {
@@ -211,48 +224,64 @@
             .letter p {
                 font-size: 1rem;
             }
+
+            .btn {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .letter-container {
+                padding: 1rem;
+            }
+
+            .btn-container-bottom {
+                top: 5px;
+                right: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header-content" id="headerContent">
-        <h1>Undangan Pernikahan</h1>
-        <p>Endi & Fauziah</p>
-        <div class="btn-container">
-            <button class="btn" id="openBtn">Buka Surat</button>
+    <div class="content-wrapper">
+        <div class="header-content">
+            <h1>Undangan Pernikahan</h1>
+            <p>Endi & Fauziah</p>
+            <div class="btn-container">
+                <button class="btn" id="openBtn">Buka Surat</button>
+            </div>
         </div>
-    </div>
-    <div class="letter-container" id="letterContent">
-        <div class="btn-container btn-container-bottom">
-            <button class="close-btn" id="closeBtn">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19.293 4.707a1 1 0 00-1.414 0L12 10.586 6.121 4.707a1 1 0 10-1.414 1.414L10.586 12l-5.879 5.879a1 1 0 001.414 1.414L12 13.414l5.879 5.879a1 1 0 001.414-1.414L13.414 12l5.879-5.879a1 1 0 000-1.414z"/>
-                </svg>
-            </button>
+        <div class="letter-container" id="letterContent">
+            <div class="btn-container btn-container-bottom">
+                <button class="close-btn" id="closeBtn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.293 4.707a1 1 0 00-1.414 0L12 10.586 6.121 4.707a1 1 0 10-1.414 1.414L10.586 12l-5.879 5.879a1 1 0 001.414 1.414L12 13.414l5.879 5.879a1 1 0 001.414-1.414L13.414 12l5.879-5.879a1 1 0 000-1.414z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="letter">
+                <h2>Salam Sejahtera,</h2>
+                <p>
+                    Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri akad pernikahan kami.
+                </p>
+                <p>
+                    <strong>Akad:</strong> 7 Oktober 2024<br>
+                    <strong>Tempat:</strong> Kediaman mempelai wanita
+                </p>
+                <p>
+                    Kehadiran Anda akan sangat berarti bagi kami. Semoga acara ini menjadi awal yang indah bagi kami dalam membangun keluarga yang sakinah, mawaddah, dan warahmah.
+                </p>
+                <p>
+                    Hormat kami,<br>Endi & Fauziah
+                </p>
+            </div>
         </div>
-        <div class="letter">
-            <h2>Salam Sejahtera,</h2>
-            <p>
-                Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri akad pernikahan kami.
-            </p>
-            <p>
-                <strong>Akad:</strong> 7 Oktober 2024<br>
-                <strong>Tempat:</strong> Kediaman mempelai wanita
-            </p>
-            <p>
-                Kehadiran Anda akan sangat berarti bagi kami. Semoga acara ini menjadi awal yang indah bagi kami dalam membangun keluarga yang sakinah, mawaddah, dan warahmah.
-            </p>
-            <p>
-                Hormat kami,<br>Endi & Fauziah
-            </p>
-        </div>
-    </div>
 
-    <!-- Efek Percikan -->
-    <div class="sparkles" id="sparkles">
-        <span class="heart"></span>
-        <span class="star"></span>
-        <span class="moon"></span>
+        <!-- Efek Percikan -->
+        <div class="sparkles" id="sparkles">
+            <span class="heart"></span>
+            <span class="star"></span>
+            <span class="moon"></span>
+        </div>
     </div>
 
     <script>
@@ -260,20 +289,17 @@
         const openBtn = document.getElementById('openBtn');
         const closeBtn = document.getElementById('closeBtn');
         const letterContent = document.getElementById('letterContent');
-        const headerContent = document.getElementById('headerContent');
         const sparkles = document.getElementById('sparkles');
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
-            headerContent.style.display = 'none';
             showSparkles();
         });
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
-            headerContent.style.display = 'block';
         });
 
         // Efek percikan saat tombol ditekan
@@ -289,7 +315,7 @@
         const yth = urlParams.get('yth');
         if (yth) {
             const safeName = yth.replace(/[<>]/g, "");
-            document.querySelector('p').innerHTML = `Yth. ${safeName}`;
+            document.querySelector('p').innerHTML = `Endi & Fauziah`;
         }
     </script>
 </body>
