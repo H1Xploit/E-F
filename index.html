@@ -40,23 +40,32 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
+            color: #8b5e34;
         }
 
         .header-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #8b5e34;
-            animation: fadeIn 2s ease-in-out;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            background: #fff;
+            display: inline;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .header-content p {
-            font-size: 1.5rem;
-            color: #8b5e34;
-            animation: fadeIn 3s ease-in-out;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            background: #fff;
+            display: inline;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .btn-container {
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .btn {
@@ -101,16 +110,16 @@
         }
 
         .letter h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #8b5e34;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .letter p {
             font-family: 'Roboto', sans-serif; /* Mengganti font isi surat */
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #555;
-            line-height: 1.8;
+            line-height: 1.6;
             margin-bottom: 1rem;
         }
 
@@ -130,6 +139,7 @@
             top: 10px;
             right: 10px;
             transition: color 0.3s;
+            z-index: 15;
         }
 
         #closeBtn:hover {
@@ -194,19 +204,19 @@
         /* Responsif */
         @media (max-width: 768px) {
             .header-content h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .header-content p {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .letter h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .letter p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -260,6 +270,7 @@
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
             headerContent.style.display = 'none';
+            document.body.style.background = 'none'; // Menyembunyikan background saat surat terbuka
             showSparkles();
         });
 
@@ -267,6 +278,7 @@
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
             headerContent.style.display = 'block';
+            document.body.style.background = 'url(\'https://raw.githubusercontent.com/H1Xploit/E-F/main/background.png\') no-repeat center center fixed';
         });
 
         // Efek percikan saat tombol ditekan
