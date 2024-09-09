@@ -3,111 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Endi & Fauziah</title>
+    <title>Undangan Pernikahan</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
         body {
-            font-family: 'Great Vibes', cursive;
-            background: #f9f9f9;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             overflow-x: hidden;
         }
         .container {
-            text-align: center;
-            padding: 50px;
-        }
-        h1, h2 {
-            margin: 0;
-        }
-        .hidden-content {
-            display: none;
-            background: white;
-            border: 2px solid #e91e63;
-            padding: 20px;
             position: relative;
-            margin: 20px auto;
+            width: 100%;
+            height: 100vh;
+            background: #f3f3f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .invitation {
             width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
+            max-width: 800px;
+            height: 90%;
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center bottom;
+            transition: transform 0.5s ease;
         }
-        .hidden-content.show {
-            display: block;
-            transform: scale(1);
+        .invitation.open {
+            transform: scaleY(1.1);
         }
-        .hidden-content.hide {
-            display: block;
-            transform: scale(0);
+        .invitation .header {
+            background: #e0b0ff;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
         }
-        .button-love {
-            display: inline-block;
-            background: #e91e63;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            transition: background 0.3s ease;
+        .invitation .body {
+            padding: 20px;
+            text-align: center;
         }
-        .button-love:hover {
-            background: #c2185b;
+        .invitation .body p {
+            font-size: 18px;
         }
-        .greeting {
-            font-size: 24px;
-            margin: 20px 0;
+        .invitation .footer {
+            background: #e0b0ff;
+            padding: 10px;
+            text-align: center;
+            color: #fff;
         }
-        .date {
-            font-size: 20px;
-            margin: 10px 0;
+        .invitation .footer p {
+            margin: 0;
+            font-size: 16px;
         }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .slide-in {
-            animation: slideIn 0.5s ease-out;
+        .fadeIn {
+            animation: fadeIn 2s ease-in;
         }
-        @media (max-width: 600px) {
-            .button-love {
-                padding: 10px 15px;
-                font-size: 20px;
-            }
+        .scroll-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .scroll-effect.show {
+            opacity: 1;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
 </head>
 <body>
     <div class="container">
-        <h1 class="slide-in">Undangan Pernikahan</h1>
-        <h2 class="slide-in">Endi & Fauziah</h2>
-        <p class="greeting slide-in">Dengan hormat, kami mengundang Anda untuk merayakan hari bahagia kami.</p>
-        <p class="date slide-in">Akad: 7 Oktober 2024 di kediaman mempelai wanita</p>
-        <button class="button-love" onclick="toggleContent()">❤️ Klik Saya ❤️</button>
-        <div id="hidden-content" class="hidden-content">
-            <p>Terima kasih telah bergabung dalam merayakan hari istimewa kami!</p>
-            <button class="button-love" onclick="toggleContent()">❤️ Tutup ❤️</button>
+        <div class="invitation fadeIn" id="invitation">
+            <div class="header">Undangan Pernikahan</div>
+            <div class="body">
+                <p>Dengan hormat,</p>
+                <p>Kami mengundang Anda untuk hadir pada pernikahan kami:</p>
+                <p><strong>Endi & Fauziah</strong></p>
+                <p>Akad: 7 Oktober 2024</p>
+                <p>Di kediaman mempelai wanita</p>
+                <p>Kami menantikan kehadiran Anda.</p>
+            </div>
+            <div class="footer">
+                <p>Terima kasih atas perhatian Anda.</p>
+            </div>
         </div>
+        <div class="scroll-effect" id="scrollEffect"></div>
     </div>
     <script>
-        function toggleContent() {
-            const content = document.getElementById('hidden-content');
-            const isVisible = content.classList.contains('show');
-            if (isVisible) {
-                content.classList.remove('show');
-                content.classList.add('hide');
+        document.addEventListener('scroll', function() {
+            const invitation = document.getElementById('invitation');
+            const scrollEffect = document.getElementById('scrollEffect');
+            if (window.scrollY > 0) {
+                invitation.classList.add('open');
+                scrollEffect.classList.add('show');
             } else {
-                content.classList.remove('hide');
-                content.classList.add('show');
+                invitation.classList.remove('open');
+                scrollEffect.classList.remove('show');
             }
-        }
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('yth') || 'Tamu';
+        document.querySelector('.body p').innerHTML = `Dengan hormat, <br> Kami mengundang Anda, <strong>${name}</strong>, untuk hadir pada pernikahan kami:`;
     </script>
 </body>
 </html>
