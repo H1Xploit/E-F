@@ -15,7 +15,7 @@
         /* Styling Umum */
         body {
             font-family: 'Great Vibes', cursive;
-            background-color: #f9f5f0;
+            background-color: #f7f0e1;
             color: #333;
             overflow: hidden;
             height: 100vh;
@@ -28,7 +28,7 @@
             place-items: center;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #fceaea, #fbe1d1);
+            background: linear-gradient(to bottom, #faf0e6, #e2c8a9);
             position: relative;
             overflow: hidden;
         }
@@ -45,13 +45,13 @@
         .header-content h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: #bf6464;
+            color: #9d6e4a;
             animation: fadeIn 2s ease-in-out;
         }
 
         .header-content p {
             font-size: 1.5rem;
-            color: #bf6464;
+            color: #9d6e4a;
             animation: fadeIn 3s ease-in-out;
         }
 
@@ -60,7 +60,7 @@
         }
 
         .btn {
-            background-color: #bf6464;
+            background-color: #9d6e4a;
             color: #fff;
             padding: 0.75rem 2rem;
             border: none;
@@ -72,7 +72,7 @@
         }
 
         .btn:hover {
-            background-color: #a85555;
+            background-color: #b17c55;
             transform: scale(1.05);
         }
 
@@ -88,7 +88,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
-            border: 3px solid #bf6464;
+            border: 3px solid #e6c5a6;
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
@@ -100,7 +100,7 @@
 
         .letter h2 {
             font-size: 2rem;
-            color: #bf6464;
+            color: #9d6e4a;
             margin-bottom: 1.5rem;
         }
 
@@ -111,23 +111,19 @@
             margin-bottom: 1rem;
         }
 
-        .btn-close {
+        .close-btn {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: transparent;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
             border: none;
             font-size: 2rem;
-            color: #bf6464;
+            color: #9d6e4a;
             cursor: pointer;
-            transition: transform 0.3s;
+            z-index: 20;
         }
 
-        .btn-close:hover {
-            transform: scale(1.2);
-        }
-
-        /* Animasi Percikan */
+        /* Efek percikan dengan emoticon */
         .sparkles {
             position: absolute;
             top: 50%;
@@ -143,26 +139,22 @@
         .sparkles span {
             position: absolute;
             display: block;
-            width: 10px;
-            height: 10px;
-            background-color: transparent;
-            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 24px;
             animation: sparkle 1s linear infinite;
         }
 
-        .sparkles .heart {
-            background: url('https://img.icons8.com/emoji/48/000000/red-heart.png') no-repeat center;
-            background-size: contain;
+        .sparkles .love {
+            content: '❤️';
         }
 
         .sparkles .star {
-            background: url('https://img.icons8.com/emoji/48/000000/star.png') no-repeat center;
-            background-size: contain;
+            content: '⭐';
         }
 
         .sparkles .moon {
-            background: url('https://img.icons8.com/emoji/48/000000/crescent-moon.png') no-repeat center;
-            background-size: contain;
+            content: '🌙';
         }
 
         @keyframes sparkle {
@@ -171,7 +163,7 @@
                 opacity: 1;
             }
             100% {
-                transform: translate(200px, -200px) scale(2);
+                transform: translate(150px, -150px) scale(2);
                 opacity: 0;
             }
         }
@@ -193,6 +185,10 @@
             .letter p {
                 font-size: 1rem;
             }
+
+            .close-btn {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -206,7 +202,7 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button class="btn-close" id="closeBtn">×</button>
+            <button class="close-btn" id="closeBtn">&times;</button>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
@@ -227,9 +223,9 @@
 
         <!-- Efek Percikan -->
         <div class="sparkles" id="sparkles">
-            <span class="heart"></span>
-            <span class="star"></span>
-            <span class="moon"></span>
+            <span class="love">❤️</span>
+            <span class="star">⭐</span>
+            <span class="moon">🌙</span>
         </div>
     </div>
 
