@@ -92,10 +92,29 @@
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
+            position: relative;
         }
 
         .letter-container.open {
             transform: translateY(0);
+        }
+
+        .letter {
+            position: relative;
+        }
+
+        .letter::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 50px;
+            background: #fff;
+            border-radius: 0 0 15px 15px;
+            box-shadow: inset 0 5px 5px rgba(0,0,0,0.2);
+            clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
         }
 
         .letter h2 {
@@ -286,7 +305,6 @@
         // Fungsi untuk menyembunyikan partikel
         function hideParticles() {
             particles.classList.remove('show');
-            particles.innerHTML = ''; // Menghapus partikel
         }
 
         // XSS protection
