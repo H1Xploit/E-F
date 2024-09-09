@@ -78,8 +78,10 @@
 
         /* Efek surat */
         .letter-container {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            max-width: 600px;
+            height: 80%;
+            max-height: 600px;
             position: absolute;
             top: 0;
             left: 0;
@@ -92,29 +94,11 @@
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
-            position: relative;
+            position: relative; /* Added for fold effect */
         }
 
         .letter-container.open {
             transform: translateY(0);
-        }
-
-        .letter {
-            position: relative;
-        }
-
-        .letter::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 50px;
-            background: #fff;
-            border-radius: 0 0 15px 15px;
-            box-shadow: inset 0 5px 5px rgba(0,0,0,0.2);
-            clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
         }
 
         .letter h2 {
@@ -147,13 +131,28 @@
             top: 10px;
             right: 10px;
             z-index: 20;
-            opacity: 0.8;
+            opacity: 1;
             transition: opacity 0.3s, transform 0.3s;
         }
 
         .close-btn:hover {
             opacity: 1;
             transform: scale(1.1);
+        }
+
+        /* Efek Lipatan Kertas */
+        .paper-fold {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-left: 10px solid #e6d8b8;
+            border-top: 10px solid #e6d8b8;
+            top: 0;
+            right: 0;
+            transform: rotate(45deg);
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 15;
         }
 
         /* Animasi Partikel */
@@ -254,6 +253,8 @@
                     Hormat kami,<br>Endi & Fauziah
                 </p>
             </div>
+            <!-- Efek Lipatan Kertas -->
+            <div class="paper-fold"></div>
         </div>
 
         <!-- Efek Partikel -->
@@ -305,6 +306,7 @@
         // Fungsi untuk menyembunyikan partikel
         function hideParticles() {
             particles.classList.remove('show');
+            particles.innerHTML = ''; // Menghapus partikel
         }
 
         // XSS protection
