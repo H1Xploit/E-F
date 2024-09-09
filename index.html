@@ -7,34 +7,22 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            background: #f9f9f9;
             text-align: center;
+            color: #333;
         }
         .container {
             position: relative;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(to bottom, #ffcccc 50%, #fff 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(to bottom, #fff 50%, #ffcccc 100%);
             opacity: 0;
             transition: opacity 2s;
-        }
-        h1 {
-            font-size: 3em;
-            color: #b30000;
-            margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.2em;
-            color: #333;
         }
         .gate {
             position: absolute;
@@ -42,13 +30,57 @@
             left: 0;
             width: 50%;
             height: 100%;
-            background: #b30000;
+            background-color: #b30000;
             transition: width 2s;
             z-index: 10;
         }
         .gate.right {
             left: auto;
             right: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #b30000;
+            margin: 0;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .love {
+            font-size: 3em;
+            color: red;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        .names {
+            text-align: center;
+        }
+        .names h1 {
+            font-size: 2.8em;
+        }
+        .names .bride {
+            font-size: 2.8em;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .names h1, .names .bride {
+                font-size: 2.2em;
+            }
+            .love {
+                font-size: 2.5em;
+            }
         }
     </style>
     <script>
@@ -81,7 +113,11 @@
     <div class="gate right"></div>
 
     <div class="container">
-        <h1>Endi Waluyo & Fauziah</h1>
+        <div class="names">
+            <h1>Endi Waluyo</h1>
+            <div class="love">❤</div>
+            <h1 class="bride">Fauziah</h1>
+        </div>
         <h2>Dengan segala hormat, kami mengundang:</h2>
         <p id="penerima">Tamu Undangan</p>
         <p>Untuk menghadiri acara akad nikah kami yang akan diselenggarakan pada:</p>
