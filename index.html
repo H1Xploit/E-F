@@ -78,10 +78,8 @@
 
         /* Efek surat */
         .letter-container {
-            width: 80%;
-            max-width: 600px;
-            height: 80%;
-            max-height: 600px;
+            width: 100%;
+            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
@@ -94,7 +92,6 @@
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
-            position: relative; /* Added for fold effect */
         }
 
         .letter-container.open {
@@ -128,31 +125,16 @@
             height: 50px;
             cursor: pointer;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            bottom: 20px; /* Menempatkan tombol lebih bawah */
+            right: 20px;
             z-index: 20;
-            opacity: 1;
+            opacity: 0.8;
             transition: opacity 0.3s, transform 0.3s;
         }
 
         .close-btn:hover {
             opacity: 1;
             transform: scale(1.1);
-        }
-
-        /* Efek Lipatan Kertas */
-        .paper-fold {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border-left: 10px solid #e6d8b8;
-            border-top: 10px solid #e6d8b8;
-            top: 0;
-            right: 0;
-            transform: rotate(45deg);
-            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
-            z-index: 15;
         }
 
         /* Animasi Partikel */
@@ -184,11 +166,11 @@
 
         @keyframes particle-fall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-100%) scale(1);
                 opacity: 1;
             }
             100% {
-                transform: translateY(100%);
+                transform: translateY(100%) scale(0.5);
                 opacity: 0;
             }
         }
@@ -200,6 +182,20 @@
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        /* Efek elegan tambahan */
+        .letter-container.open .letter {
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
             }
         }
 
@@ -234,9 +230,6 @@
         </div>
         <div class="letter-container" id="letterContent">
             <button class="close-btn" id="closeBtn"></button>
-            <div class="btn-container btn-container-bottom">
-                <!-- Tombol Tutup Surat digantikan dengan X transparan -->
-            </div>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
@@ -253,8 +246,6 @@
                     Hormat kami,<br>Endi & Fauziah
                 </p>
             </div>
-            <!-- Efek Lipatan Kertas -->
-            <div class="paper-fold"></div>
         </div>
 
         <!-- Efek Partikel -->
@@ -295,11 +286,6 @@
                 particle.style.opacity = Math.random();
                 particle.style.transform = `scale(${Math.random()})`;
                 particles.appendChild(particle);
-
-                // Menghapus partikel setelah animasi selesai
-                setTimeout(() => {
-                    particle.remove();
-                }, 3000);
             }
         }
 
