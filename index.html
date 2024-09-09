@@ -7,79 +7,110 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: #f9f9f9;
-            text-align: center;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background-color: #f9f9f9;
             color: #333;
-        }
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, #fff 50%, #ffcccc 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
             opacity: 0;
             transition: opacity 2s;
+            position: relative;
         }
+
         .gate {
             position: absolute;
             top: 0;
             left: 0;
             width: 50%;
-            height: 100%;
+            height: 100vh;
             background-color: #b30000;
             transition: width 2s;
             z-index: 10;
         }
+
         .gate.right {
             left: auto;
             right: 0;
         }
+
         h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             color: #b30000;
+            margin: 10px 0;
+        }
+
+        .names h1 {
+            font-family: 'Brush Script MT', cursive;
             margin: 0;
         }
+
         h2 {
             font-size: 1.5em;
-            margin: 20px 0;
+            margin: 15px 0;
+            font-family: 'Arial', sans-serif;
+            color: #444;
         }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+            font-family: 'Verdana', sans-serif;
+        }
+
         .love {
             font-size: 3em;
             color: red;
             margin: 10px 0;
         }
-        p {
-            font-size: 1.1em;
+
+        .svg-heart {
+            width: 100px;
+            height: 100px;
             margin: 10px 0;
         }
+
         .names {
-            text-align: center;
+            margin-top: -30px;
         }
-        .names h1 {
-            font-size: 2.8em;
+
+        .names h1.bride {
+            margin-bottom: 10px;
         }
-        .names .bride {
-            font-size: 2.8em;
-        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
             }
+
             h2 {
                 font-size: 1.2em;
             }
+
             p {
                 font-size: 1em;
             }
+
             .names h1, .names .bride {
                 font-size: 2.2em;
             }
-            .love {
-                font-size: 2.5em;
+
+            .svg-heart {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -115,7 +146,12 @@
     <div class="container">
         <div class="names">
             <h1>Endi Waluyo</h1>
-            <div class="love">❤</div>
+            <svg class="svg-heart" viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    fill="#ff4d4d"
+                    d="M23.6 0C21 0 18.6 1.2 16.9 3.1 15.1 1.2 12.7 0 10.1 0 4.5 0 0 4.5 0 10.1c0 4.2 2.3 8.2 6.4 11.7 3.2 2.7 7.1 4.7 9.1 5.6.7.3 1.4.3 2 0 2-.9 5.9-2.9 9.1-5.6C29.7 18.3 32 14.3 32 10.1 32 4.5 27.5 0 23.6 0z"
+                />
+            </svg>
             <h1 class="bride">Fauziah</h1>
         </div>
         <h2>Dengan segala hormat, kami mengundang:</h2>
