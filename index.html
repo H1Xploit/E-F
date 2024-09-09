@@ -1,90 +1,118 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Endi & Fauziah</title>
-    
-    <!-- Menggunakan Google Fonts untuk "Great Vibes" dan "Lora" -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>Undangan Pernikahan Endi dan Fauziah</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
     <style>
-        * {
+        body {
+            font-family: 'Great Vibes', cursive;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KPHBhdGggZD0iTTAgMEwgMTAwIDAsMEwxMDAgMTAwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
         }
-
-        body {
-            font-family: 'Lora', serif;
-            background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/e9a7f6d028fcaf00d24446f536512c9fc2c83ab4/bg.svg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            color: white;
-        }
-
         .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 15px;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
         }
-
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+        }
         h1 {
-            font-family: 'Great Vibes', cursive;
             font-size: 3em;
-            margin-bottom: 20px;
+            animation: slideIn 1s ease-out;
         }
-
-        p {
-            font-family: 'Lora', serif;
-            font-size: 1.2em;
-            margin-bottom: 15px;
+        h2 {
+            font-size: 2em;
+            margin-top: 0.5em;
         }
-
-        .date-location {
+        .content {
+            display: none;
             margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            background: #fff;
+            animation: fadeIn 1s ease-out;
         }
-
-        .recipient {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #ffd700;
+        .reveal-button {
+            cursor: pointer;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .reveal-button:hover {
+            background-color: #ff1493;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Undangan Pernikahan</h1>
-        <p>Kepada Yth.</p>
-        <p class="recipient" id="recipient-name"></p>
-        <p>Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:</p>
-        <h1>Endi & Fauziah</h1>
-        <div class="date-location">
-            <p>Akad Nikah: 7 Oktober 2024</p>
-            <p>Lokasi: Kediaman Mempelai Wanita</p>
+        <h2>Endi & Fauziah</h2>
+        <p>Akad: 7 Oktober 2024 di kediaman mempelai wanita</p>
+        <p>Kami dengan bahagia mengundang Anda untuk merayakan hari bahagia kami.</p>
+        <p>Untuk melihat detail undangan, klik tombol di bawah ini:</p>
+        <button class="reveal-button" onclick="toggleContent()">Buka Undangan</button>
+        <div class="content" id="invitation-content">
+            <p>Selamat datang dalam perayaan pernikahan kami. Kami sangat berterima kasih atas kehadiran Anda di hari istimewa ini.</p>
+            <p>Alamat: Jalan Contoh No. 123, Kota Contoh</p>
         </div>
-        <p>Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
     </div>
 
     <script>
-        // Mendapatkan nama dari URL parameter ?yth=
-        const urlParams = new URLSearchParams(window.location.search);
-        const recipientName = urlParams.get('yth');
-        
-        if (recipientName) {
-            document.getElementById('recipient-name').textContent = recipientName;
-        } else {
-            document.getElementById('recipient-name').textContent = 'Tamu Undangan';
+        function getParameterByName(name) {
+            const url = window.location.href;
+            const regex = new RegExp('[?&]' + name + '=([^&#]*)');
+            const results = regex.exec(url);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
+
+        function toggleContent() {
+            const content = document.getElementById('invitation-content');
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = getParameterByName('yth');
+            if (name) {
+                document.querySelector('h2').textContent = `${name} & Fauziah`;
+            }
+        });
     </script>
 </body>
 </html>
