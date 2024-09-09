@@ -1,117 +1,72 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Endi & Fauziah</title>
+    <title>Wedding Invitation</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Times New Roman', serif;
-            overflow: hidden;
-        }
-
-        .container {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #003366; /* Dark Blue Background */
-            color: #f8f8f8; /* Light text color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
+            font-family: 'Great Vibes', cursive; /* Font mirip dengan gaya elegan */
+            background-image: url('https://img.freepik.com/free-vector/luxury-gold-mandala-ornate-background-wedding-invitation_1017-31105.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
             text-align: center;
-            transition: transform 0.6s ease;
         }
 
-        .page.hidden {
-            transform: translateY(-100%);
+        h1 {
+            font-size: 4rem;
+            margin-top: 20vh;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        .page:nth-child(2) {
-            background: #001a33; /* Slightly darker blue for the second page */
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            line-height: 1.5;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
         }
 
-        .page h1, .page h2 {
-            margin: 0;
-            font-family: 'Garamond', serif;
-            color: #f8f8f8;
+        .details {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
         }
 
-        .page h1 {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 0.5em;
+        .rsvp-btn {
+            background-color: #d4af37;
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 20px;
         }
 
-        .page h2 {
-            font-size: 2em;
-        }
-
-        .page p {
-            font-size: 1.2em;
-        }
-
-        .page .details {
-            font-size: 1em;
-            margin-top: 1em;
-        }
-
-        /* For the slide effect */
-        .container.slide .page {
-            transform: translateY(100%);
+        .rsvp-btn:hover {
+            background-color: #fff;
+            color: #d4af37;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="page">
-            <div>
-                <h1>Endi & Fauziah</h1>
-                <h2>Dengan penuh suka cita</h2>
-                <p>Mengundang Anda untuk merayakan hari bahagia kami</p>
-                <div class="details">
-                    <p>Tanggal: 15 Oktober 2024</p>
-                    <p>Tempat: Gedung Serba Guna, Jl. Contoh No. 123, Jakarta</p>
-                </div>
-            </div>
-        </div>
-        <div class="page hidden">
-            <div>
-                <h1>Rincian Acara</h1>
-                <p>Akad Nikah: Pukul 09.00 WIB</p>
-                <p>Resepsi: Pukul 12.00 WIB</p>
-                <p>Alamat: Gedung Serba Guna, Jl. Contoh No. 123, Jakarta</p>
-                <p>Dress Code: Formal</p>
-            </div>
-        </div>
+
+    <h1>You're Invited</h1>
+    <div class="details">
+        <p>Join us to celebrate the wedding of</p>
+        <p><strong>John & Jane</strong></p>
+        <p>on December 25th, 2024</p>
+        <p>at the Luxury Banquet Hall</p>
+        <p>5:00 PM - 10:00 PM</p>
     </div>
 
-    <script>
-        const container = document.getElementById('container');
-        let isSecondPageVisible = false;
+    <button class="rsvp-btn">RSVP Now</button>
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight / 2) {
-                if (!isSecondPageVisible) {
-                    container.classList.add('slide');
-                    isSecondPageVisible = true;
-                }
-            } else {
-                if (isSecondPageVisible) {
-                    container.classList.remove('slide');
-                    isSecondPageVisible = false;
-                }
-            }
-        });
-    </script>
 </body>
 </html>
