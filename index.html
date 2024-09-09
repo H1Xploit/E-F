@@ -10,26 +10,26 @@
             padding: 0;
             font-family: 'Great Vibes', cursive;
             background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/bg.jpg');
-            background-size: contain; /* Menyesuaikan gambar agar tidak terpotong */
+            background-size: cover; /* Gambar latar penuh tanpa terpotong */
             background-repeat: no-repeat;
+            background-attachment: fixed; /* Gambar latar tetap pada posisi saat scroll */
             background-position: center;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
             text-align: center;
-            overflow: hidden; /* Menghindari scroll jika background terlalu besar */
         }
 
         .container {
             background-color: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan untuk keterbacaan */
-            padding: 40px;
+            padding: 40px 20px;
             border-radius: 15px;
             max-width: 90%;
             width: 600px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            margin: 0 auto; /* Memastikan konten berada di tengah */
+            margin: 20px; /* Menambahkan margin untuk ruang di sekeliling */
         }
 
         h1 {
