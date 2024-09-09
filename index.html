@@ -1,118 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Endi dan Fauziah</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap">
+    <title>Undangan Pernikahan Endi & Fauziah</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        
         body {
-            font-family: 'Great Vibes', cursive;
             margin: 0;
-            padding: 0;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KPHBhdGggZD0iTTAgMEwgMTAwIDAsMEwxMDAgMTAwIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==') no-repeat center center fixed;
+            font-family: 'Great Vibes', cursive;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgIGhlaWdodD0iMTAwJSIgIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZyBmaWxsPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuMCIgc3Ryb2tlLWxpbmVjYXRpb24tZGFzaGFyZCI+CiAgICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIxMCIvPgogICAgPHBhdGggZD0iTTEwLDEyIEwzMCwxMiBNMiw2IEwyLDEwIEwyMCwzIEwxMCwzIiAvPgogICAgPHBhdGggZD0iTTAsMEwgMjAsMEwiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1vcGFjaXR5PSIwLjIiIHN0cm9rZS1jb2xvcj0iIzQ0NDQiLz4KICA8L2c+Cjwvc3ZnPg==') no-repeat center center fixed;
             background-size: cover;
-            color: #333;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            color: #fff;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .content {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
             border-radius: 10px;
+            max-width: 600px;
+            margin: 2rem auto;
             position: relative;
             overflow: hidden;
         }
-        h1, h2 {
-            margin: 0;
-            padding: 0;
+
+        .content h2 {
+            font-size: 2rem;
         }
-        h1 {
-            font-size: 3em;
-            animation: slideIn 1s ease-out;
-        }
-        h2 {
-            font-size: 2em;
-            margin-top: 0.5em;
-        }
-        .content {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            border: 2px solid #ff69b4;
-            border-radius: 10px;
-            background: #fff;
-            animation: fadeIn 1s ease-out;
-        }
-        .reveal-button {
+
+        .reveal {
+            position: relative;
+            display: inline-block;
             cursor: pointer;
-            background-color: #ff69b4;
-            color: white;
+            padding: 1rem 2rem;
+            background-color: #ff4081;
             border: none;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #fff;
+            transition: background-color 0.3s;
         }
-        .reveal-button:hover {
-            background-color: #ff1493;
+
+        .reveal:hover {
+            background-color: #f50057;
         }
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+
+        .content.show {
+            display: block;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+
+        .animation-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animation-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
             }
-            to {
-                opacity: 1;
+            .reveal {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Undangan Pernikahan</h1>
-        <h2>Endi & Fauziah</h2>
+    <h1>Undangan Pernikahan Endi & Fauziah</h1>
+    <div class="animation-on-scroll">
         <p>Akad: 7 Oktober 2024 di kediaman mempelai wanita</p>
-        <p>Kami dengan bahagia mengundang Anda untuk merayakan hari bahagia kami.</p>
-        <p>Untuk melihat detail undangan, klik tombol di bawah ini:</p>
-        <button class="reveal-button" onclick="toggleContent()">Buka Undangan</button>
-        <div class="content" id="invitation-content">
-            <p>Selamat datang dalam perayaan pernikahan kami. Kami sangat berterima kasih atas kehadiran Anda di hari istimewa ini.</p>
-            <p>Alamat: Jalan Contoh No. 123, Kota Contoh</p>
-        </div>
     </div>
-
+    <button class="reveal" onclick="revealContent()">❤️</button>
+    <div id="content" class="content">
+        <h2>Kata Sambutan</h2>
+        <p>Dengan penuh rasa syukur dan bahagia, kami mengundang Anda untuk merayakan hari istimewa kami. Kehadiran Anda akan membuat momen kami semakin berharga. Terima kasih atas doa dan dukungannya.</p>
+    </div>
     <script>
-        function getParameterByName(name) {
-            const url = window.location.href;
-            const regex = new RegExp('[?&]' + name + '=([^&#]*)');
-            const results = regex.exec(url);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-
-        function toggleContent() {
-            const content = document.getElementById('invitation-content');
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const name = getParameterByName('yth');
-            if (name) {
-                document.querySelector('h2').textContent = `${name} & Fauziah`;
-            }
+        document.addEventListener('scroll', function() {
+            document.querySelectorAll('.animation-on-scroll').forEach(function(element) {
+                if (element.getBoundingClientRect().top < window.innerHeight) {
+                    element.classList.add('visible');
+                }
+            });
         });
+
+        function revealContent() {
+            document.getElementById('content').classList.add('show');
+        }
     </script>
 </body>
 </html>
