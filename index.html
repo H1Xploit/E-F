@@ -60,6 +60,19 @@
             text-align: center;
         }
 
+        .names h1 {
+            display: inline;
+            font-family: 'Brush Script MT', cursive;
+            margin: 0 10px;
+        }
+
+        .names .ampersand {
+            font-size: 2.8em;
+            font-weight: bold;
+            color: #b30000;
+            margin: 0 10px;
+        }
+
         h2 {
             font-size: 1.5em;
             margin: 15px 0;
@@ -71,20 +84,6 @@
             font-size: 1.2em;
             margin: 10px 0;
             font-family: 'Verdana', sans-serif;
-        }
-
-        .svg-heart-arrow {
-            width: 80px;
-            height: 80px;
-            margin: 5px auto;
-        }
-
-        .names h1 {
-            font-family: 'Brush Script MT', cursive;
-        }
-
-        .names h1.bride {
-            margin-bottom: 10px;
         }
 
         @media (max-width: 768px) {
@@ -100,13 +99,12 @@
                 font-size: 1em;
             }
 
-            .names h1, .names .bride {
+            .names h1 {
                 font-size: 2.2em;
             }
 
-            .svg-heart-arrow {
-                width: 60px;
-                height: 60px;
+            .names .ampersand {
+                font-size: 2.2em;
             }
         }
     </style>
@@ -142,11 +140,8 @@
     <div class="container">
         <div class="names">
             <h1>Endi Waluyo</h1>
-            <svg class="svg-heart-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path fill="#ff4d4d" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.5 3.5 5 5.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5 18.5 5 20 6.5 20 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                <path fill="#b30000" d="M19.78 7.22L16 10v2l6-6-6-6v2l3.78 3.78H4.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h15.28z"/>
-            </svg>
-            <h1 class="bride">Fauziah</h1>
+            <span class="ampersand">&amp;</span>
+            <h1>Fauziah</h1>
         </div>
         <h2>Dengan segala hormat, kami mengundang:</h2>
         <p id="penerima">Tamu Undangan</p>
