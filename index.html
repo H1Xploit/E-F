@@ -90,13 +90,15 @@
             text-align: center;
             border: 5px solid #e6d8b8;
             transform: scale(0.9);
+            opacity: 0;
             transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
+            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
         }
 
         .letter-container.open {
             transform: scale(1);
+            opacity: 1;
         }
 
         .letter h2 {
