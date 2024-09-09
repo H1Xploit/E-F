@@ -8,8 +8,8 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Georgia', serif;
-            background-color: #f9f9f9;
+            font-family: 'Merriweather', serif;
+            background-color: #f4f4f4;
             color: #333;
             display: flex;
             justify-content: center;
@@ -21,10 +21,10 @@
         .container {
             max-width: 800px;
             width: 90%;
-            padding: 20px;
+            padding: 30px;
             background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
             text-align: center;
             opacity: 0;
             transition: opacity 2s;
@@ -48,63 +48,69 @@
         }
 
         h1 {
-            font-size: 2.8em;
+            font-size: 3em;
             color: #b30000;
-            margin: 10px 0;
+            margin: 0;
             line-height: 1.2;
+            font-family: 'Playfair Display', serif;
         }
 
         .names {
-            margin-top: -30px;
-            display: inline-block;
-            text-align: center;
+            margin: 20px 0;
         }
 
-        .names h1 {
-            display: inline;
-            font-family: 'Brush Script MT', cursive;
-            margin: 0 10px;
+        .names .name {
+            display: inline-block;
+            font-size: 2.5em;
+            margin: 0 20px;
+            font-family: 'Playfair Display', serif;
         }
 
         .names .ampersand {
-            font-size: 2.8em;
-            font-weight: bold;
+            font-size: 3em;
             color: #b30000;
-            margin: 0 10px;
+            font-weight: bold;
+            vertical-align: middle;
         }
 
         h2 {
-            font-size: 1.5em;
-            margin: 15px 0;
-            font-family: 'Arial', sans-serif;
-            color: #444;
+            font-size: 1.6em;
+            margin: 20px 0;
+            font-family: 'Lora', serif;
+            color: #555;
         }
 
         p {
             font-size: 1.2em;
             margin: 10px 0;
-            font-family: 'Verdana', sans-serif;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #b30000;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
             h1 {
+                font-size: 2.2em;
+            }
+
+            .names .name {
                 font-size: 2em;
             }
 
+            .names .ampersand {
+                font-size: 2.5em;
+            }
+
             h2 {
-                font-size: 1.2em;
+                font-size: 1.4em;
             }
 
             p {
                 font-size: 1em;
-            }
-
-            .names h1 {
-                font-size: 2.2em;
-            }
-
-            .names .ampersand {
-                font-size: 2.2em;
             }
         }
     </style>
@@ -139,14 +145,15 @@
 
     <div class="container">
         <div class="names">
-            <h1>Endi W.</h1>
+            <h1 class="name">Endi W.</h1>
             <span class="ampersand">&amp;</span>
-            <h1>Fauziah</h1>
+            <h1 class="name">Fauziah</h1>
         </div>
         <h2>Dengan segala hormat, kami mengundang:</h2>
         <p id="penerima">Tamu Undangan</p>
         <p>Untuk menghadiri acara akad nikah kami yang akan diselenggarakan pada:</p>
-        <p><strong>7 Oktober 2024</strong> di kediaman mempelai wanita.</p>
+        <p class="highlight">7 Oktober 2024</p>
+        <p>di kediaman mempelai wanita.</p>
         <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
         <p>Hormat kami,</p>
         <p><strong>Endi Waluyo & Fauziah</strong></p>
