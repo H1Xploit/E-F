@@ -3,101 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan Endi & Fauziah</title>
     <style>
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden; /* Menghindari scroll */
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: 'Great Vibes', cursive;
-            background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/bg.jpg');
-            background-size: cover; /* Menyesuaikan gambar agar menutupi seluruh layar */
-            background-repeat: no-repeat;
+            background-image: url('bg.jpg');
+            background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            color: #fff;
+            justify-content: center;
+            height: 100vh;
+            color: white;
             text-align: center;
         }
 
         .container {
-            background-color: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan untuk keterbacaan */
-            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
             border-radius: 15px;
-            max-width: 90%;
-            width: 600px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
+            width: 90%;
+            max-width: 600px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         p {
-            font-size: 1.25rem;
-            margin: 10px 0;
-            line-height: 1.6;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+            font-size: 1.2em;
+            margin-bottom: 15px;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        .date-location {
+            margin-top: 20px;
+        }
 
-            p {
-                font-size: 1rem;
-            }
+        .recipient {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <script>
-        function sanitizeInput(input) {
-            // Sanitize input to prevent XSS
-            const element = document.createElement('div');
-            element.innerText = input;
-            return element.innerHTML;
-        }
-
-        function getParameterByName(name) {
-            const url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-            const results = regex.exec(url);
-            if (!results || !results[2]) return null;
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
-
-        window.onload = function() {
-            const recipient = getParameterByName('yth');
-            if (recipient) {
-                document.getElementById('recipient').innerHTML = sanitizeInput(recipient);
-            }
-        };
-    </script>
 </head>
 <body>
-
     <div class="container">
         <h1>Undangan Pernikahan</h1>
-        <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-        <p id="recipient">Tamu Undangan</p>
-        <p>Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan putra-putri kami:</p>
-        <p><strong>Endi & Fauziah</strong></p>
-        <p>Yang Insya Allah akan dilaksanakan pada:</p>
-        <p><strong>Senin, 7 Oktober 2024</strong></p>
-        <p>Bertempat di rumah mempelai wanita</p>
-        <p>Jl. Contoh Alamat No. 123</p>
-        <p>Atas kehadiran dan doa restunya, kami ucapkan terima kasih.</p>
+        <p>Kepada Yth.</p>
+        <p class="recipient" id="recipient-name"></p>
+        <p>Dengan penuh rasa syukur, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:</p>
+        <h1>Endi & Fauziah</h1>
+        <div class="date-location">
+            <p>Akad Nikah: 7 Oktober 2024</p>
+            <p>Lokasi: Kediaman Mempelai Wanita</p>
+        </div>
+        <p>Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
     </div>
 
+    <script>
+        // Mendapatkan nama dari URL parameter ?yth=
+        const urlParams = new URLSearchParams(window.location.search);
+        const recipientName = urlParams.get('yth');
+        
+        if (recipientName) {
+            document.getElementById('recipient-name').textContent = recipientName;
+        } else {
+            document.getElementById('recipient-name').textContent = 'Tamu Undangan';
+        }
+    </script>
 </body>
 </html>
