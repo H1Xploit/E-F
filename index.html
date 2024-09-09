@@ -21,6 +21,8 @@
             margin-top: 100px;
             opacity: 0; /* Konten dimulai dengan opacity 0 */
             transition: opacity 1s ease-in-out; /* Transisi opacity saat muncul */
+            position: relative; /* Posisi relatif untuk memastikan elemen tidak tertutup */
+            z-index: 1; /* Pastikan konten berada di atas elemen lain */
         }
         .container.visible {
             opacity: 1; /* Konten akan muncul dengan opacity 1 */
@@ -39,8 +41,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2c2c2c; /* Background gerbang gelap */
-            z-index: 10; /* Pastikan gerbang di atas konten */
+            background-color: #2c2c2c; /* Background gelap untuk gerbang */
+            z-index: 10; /* Pastikan gerbang berada di atas konten */
         }
         .gate-left, .gate-right {
             position: absolute;
@@ -104,7 +106,8 @@
             // Ambil parameter URL 'to' untuk nama tamu dan cegah XSS
             const guestName = getUrlParameter('to');
             const nameField = document.getElementById('guestName');
-            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
+            nameField.textContent = guestName ? guestName
+                            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
         };
 
         // Fungsi untuk mengambil parameter dari URL dan hindari XSS
