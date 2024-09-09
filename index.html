@@ -26,11 +26,14 @@
         .content-wrapper {
             display: grid;
             place-items: center;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            background: linear-gradient(to bottom, #fff5e6, #f5e8d0);
             position: relative;
             overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .header-content {
@@ -57,7 +60,6 @@
 
         .btn-container {
             margin-top: 2rem;
-            position: relative;
         }
 
         .btn {
@@ -77,80 +79,15 @@
             transform: scale(1.05);
         }
 
-        .btn-close {
-            background: transparent;
-            border: none;
-            font-size: 2rem;
-            color: #8b5e34;
-            cursor: pointer;
-        }
-
-        .btn-close:hover {
-            color: #a66d45;
-        }
-
-        /* Pita */
-        .ribbon-container {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            z-index: 10;
-        }
-
-        .ribbon-container.open {
-            display: block;
-        }
-
-        .ribbon {
-            width: 200px;
-            height: 40px;
-            background-color: #8b5e34;
-            color: #fff;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 20px;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transform: translateX(-50%);
-            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
-        }
-
-        .ribbon::before,
-        .ribbon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 20px solid transparent;
-            border-bottom-color: #8b5e34;
-            transform: translateY(-50%);
-            transition: width 0.8s cubic-bezier(0.42, 0, 0.58, 1);
-        }
-
-        .ribbon::before {
-            left: -20px;
-            border-right-color: transparent;
-            border-left-color: #8b5e34;
-        }
-
-        .ribbon::after {
-            right: -20px;
-            border-left-color: transparent;
-            border-right-color: #8b5e34;
-        }
-
+        /* Efek surat */
         .letter-container {
             width: 100%;
             height: 100%;
             position: absolute;
             top: 0;
             left: 0;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: #f9f8f6;
+            border-radius: 15px;
             padding: 2rem;
             text-align: center;
             border: 5px solid #e6d8b8;
@@ -173,7 +110,7 @@
         }
 
         .letter p {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Mengganti font isi surat */
             font-size: 1.2rem;
             color: #555;
             line-height: 1.8;
@@ -181,8 +118,24 @@
         }
 
         .btn-container-bottom {
-            margin-top: 2rem;
-            position: relative;
+            position: absolute;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-close {
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: #8b5e34;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .btn-close:hover {
+            color: #a66d45;
+            transform: scale(1.1);
         }
 
         /* Animasi Percikan */
@@ -240,24 +193,6 @@
             }
         }
 
-        @keyframes ribbonOpen {
-            0% {
-                transform: translateX(-50%) scaleX(0);
-            }
-            100% {
-                transform: translateX(-50%) scaleX(1);
-            }
-        }
-
-        @keyframes ribbonClose {
-            0% {
-                transform: translateX(-50%) scaleX(1);
-            }
-            100% {
-                transform: translateX(-50%) scaleX(0);
-            }
-        }
-
         /* Responsif */
         @media (max-width: 768px) {
             .header-content h1 {
@@ -280,19 +215,16 @@
 </head>
 <body>
     <div class="content-wrapper">
-        <div class="ribbon-container" id="ribbonContainer">
-            <div class="ribbon" id="ribbon">Undangan</div>
-        </div>
         <div class="header-content" id="headerContent">
             <h1>Undangan Pernikahan</h1>
             <p>Yth. Daeng</p>
             <div class="btn-container">
-                <button class="btn" id="openBtn">Buka</button>
+                <button class="btn" id="openBtn">Buka Surat</button>
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <div class="btn-container btn-container-bottom">
-                <button class="btn-close" id="closeBtn">&times;</button>
+            <div class="btn-container-bottom">
+                <button class="btn-close" id="closeBtn">×</button>
             </div>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
@@ -327,15 +259,11 @@
         const letterContent = document.getElementById('letterContent');
         const headerContent = document.getElementById('headerContent');
         const sparkles = document.getElementById('sparkles');
-        const ribbonContainer = document.getElementById('ribbonContainer');
-        const ribbon = document.getElementById('ribbon');
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
             headerContent.style.display = 'none';
-            ribbonContainer.classList.add('open');
-            ribbon.style.animation = 'ribbonOpen 0.8s cubic-bezier(0.42, 0, 0.58, 1) forwards';
             showSparkles();
         });
 
@@ -343,7 +271,6 @@
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
             headerContent.style.display = 'block';
-            ribbon.style.animation = 'ribbonClose 0.8s cubic-bezier(0.42, 0, 0.58, 1) forwards';
         });
 
         // Efek percikan saat tombol ditekan
