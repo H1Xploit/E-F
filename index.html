@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Undangan Pernikahan Endi & Fauziah</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #fdf6e3;
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
+            background-size: cover;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            margin-top: 100px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #c47f55;
+        }
+        .gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .gate-left, .gate-right {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background-color: #c47f55;
+            z-index: 5;
+            transition: transform 2s ease-in-out;
+        }
+        .gate-left {
+            left: 0;
+            transform: translateX(0);
+        }
+        .gate-right {
+            right: 0;
+            transform: translateX(0);
+        }
+        .gate.open .gate-left {
+            transform: translateX(-100%);
+        }
+        .gate.open .gate-right {
+            transform: translateX(100%);
+        }
+        .content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .show-content .content {
+            opacity: 1;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .highlight {
+            font-size: 2em;
+            font-weight: bold;
+            color: #c47f55;
+        }
+    </style>
+</head>
+<body>
+    <div class="gate">
+        <div class="gate-left"></div>
+        <div class="gate-right"></div>
+    </div>
+
+    <div class="container">
+        <h1>Undangan Pernikahan</h1>
+        <p>Kepada Yth, <span id="guestName" class="highlight"></span></p>
+        <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk menghadiri pernikahan kami.</p>
+        <h1 class="highlight">Endi Waluyo & Fauziah</h1>
+        <p>Akad nikah akan dilaksanakan pada <b>7 Oktober 2024</b> di kediaman mempelai wanita.</p>
+        <p>Kami sangat berharap kehadiran dan doa restu Anda.</p>
+    </div>
+
+    <script>
+        // Fungsi untuk membuka gerbang setelah scroll
+        window.addEventListener('scroll', function() {
+            const gate = document.querySelector('.gate');
+            if (window.scrollY > 100) {
+                gate.classList.add('open');
+                document.body.classList.add('show-content');
+            }
+        });
+
+        // Fungsi untuk mendapatkan parameter dari URL dan menghindari XSS
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Mengambil parameter 'to' dari URL dan menampilkannya sebagai nama tamu
+        window.onload = function() {
+            const guestName = getUrlParameter('to');
+            const nameField = document.getElementById('guestName');
+            nameField.textContent = guestName ? guestName : 'Tamu Undangan';
+        };
+    </script>
+</body>
+</html>
