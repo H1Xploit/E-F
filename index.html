@@ -25,12 +25,9 @@
         }
 
         .content-wrapper {
-            display: grid;
-            place-items: center;
+            position: relative;
             width: 100%;
             height: 100%;
-            position: relative;
-            overflow: hidden;
         }
 
         .header-content {
@@ -79,26 +76,24 @@
 
         /* Efek surat */
         .letter-container {
-            width: 100%;
-            height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0;
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
             background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/isi.png') no-repeat center center;
             background-size: contain;
             border: none;
             padding: 2rem;
             text-align: center;
-            transform: scale(0.9);
-            opacity: 0;
-            transform-origin: top;
-            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
+            z-index: 9;
             overflow: hidden;
             display: none; /* Sembunyikan surat saat tidak dibuka */
         }
 
         .letter-container.open {
-            transform: scale(1);
+            transform: translate(-50%, -50%) scale(1);
             opacity: 1;
             display: block; /* Tampilkan surat saat dibuka */
         }
