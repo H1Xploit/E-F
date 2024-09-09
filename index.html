@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Endi & Fauziah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Reset CSS */
         * {
@@ -89,22 +90,26 @@
             padding: 2rem;
             text-align: center;
             border: 5px solid #e6d8b8;
-            transform: translateY(100%);
+            transform: scale(0.8);
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
+            opacity: 0;
         }
 
         .letter-container.open {
-            transform: translateY(0);
+            transform: scale(1);
+            opacity: 1;
         }
 
         .letter h2 {
+            font-family: 'Lora', serif;
             font-size: 2rem;
             color: #8b5e34;
             margin-bottom: 1.5rem;
         }
 
         .letter p {
+            font-family: 'Lora', serif;
             font-size: 1.2rem;
             color: #555;
             line-height: 1.8;
