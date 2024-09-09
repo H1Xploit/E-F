@@ -101,10 +101,6 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        .letter-container.closing {
-            transform: translate(calc(-50% + 20px), calc(-50% + 20px)) scale(0.1);
-        }
-
         .letter h2 {
             font-size: 2rem;
             color: #8b5e34;
@@ -120,6 +116,7 @@
 
         .btn-container-bottom {
             margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         /* Tombol tutup */
@@ -187,6 +184,24 @@
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
             }
         }
 
@@ -271,8 +286,8 @@
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
+            letterContent.style.display = 'block';
             letterContent.classList.add('open');
-            letterContent.classList.remove('closing');
             headerContent.style.display = 'none';
             particles.style.display = 'block';
             // Membuat efek partikel
@@ -287,12 +302,12 @@
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
-            letterContent.classList.add('closing');
-            headerContent.style.display = 'block';
-            particles.style.display = 'none';
+            letterContent.classList.remove('open');
             setTimeout(() => {
-                letterContent.classList.remove('open');
-            }, 800); // Durasi animasi
+                letterContent.style.display = 'none';
+                headerContent.style.display = 'block';
+                particles.style.display = 'none';
+            }, 800);
         });
 
         // XSS protection
