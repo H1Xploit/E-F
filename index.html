@@ -15,8 +15,7 @@
         /* Styling Umum */
         body {
             font-family: 'Great Vibes', cursive;
-            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/background.png') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #f3efe1;
             color: #333;
             overflow: hidden;
             height: 100vh;
@@ -25,9 +24,13 @@
         }
 
         .content-wrapper {
-            position: relative;
+            display: grid;
+            place-items: center;
             width: 100%;
             height: 100%;
+            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
+            position: relative;
+            overflow: hidden;
         }
 
         .header-content {
@@ -37,24 +40,23 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.8); /* Background semi-transparan untuk elemen header */
-            padding: 1rem;
-            border-radius: 10px;
         }
 
         .header-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             color: #8b5e34;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .header-content p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #8b5e34;
+            animation: fadeIn 3s ease-in-out;
         }
 
         .btn-container {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
 
         .btn {
@@ -63,7 +65,7 @@
             padding: 0.75rem 2rem;
             border: none;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -76,37 +78,38 @@
 
         /* Efek surat */
         .letter-container {
+            width: 80%;
+            height: 80%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            opacity: 0;
-            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/isi.png') no-repeat center center;
-            background-size: contain;
-            border: none;
+            top: 0;
+            left: 0;
+            background: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/isi.png') no-repeat center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
-            z-index: 9;
+            transform: scale(0.9);
+            opacity: 0;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
-            display: none; /* Sembunyikan surat saat tidak dibuka */
         }
 
         .letter-container.open {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
             opacity: 1;
-            display: block; /* Tampilkan surat saat dibuka */
         }
 
         .letter h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #8b5e34;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .letter p {
             font-family: 'Roboto', sans-serif; /* Mengganti font isi surat */
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #555;
             line-height: 1.8;
             margin-bottom: 1rem;
@@ -117,21 +120,19 @@
             margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
         }
 
-        /* Tombol tutup */
+        /* Tombol tutup dengan X transparan */
         #closeBtn {
-            background: transparent;
-            color: #8b5e34;
-            font-size: 2rem;
+            background: url('https://img.icons8.com/material-outlined/24/000000/delete.png') no-repeat center;
+            background-size: contain;
+            width: 30px;
+            height: 30px;
             border: none;
             cursor: pointer;
             position: absolute;
             top: 10px;
             right: 10px;
-            transition: color 0.3s;
-        }
-
-        #closeBtn:hover {
-            color: #a66d45;
+            background-color: transparent;
+            box-shadow: none;
         }
 
         /* Animasi Percikan */
@@ -192,19 +193,19 @@
         /* Responsif */
         @media (max-width: 768px) {
             .header-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .header-content p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             .letter h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .letter p {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -213,13 +214,13 @@
     <div class="content-wrapper">
         <div class="header-content" id="headerContent">
             <h1>Undangan Pernikahan</h1>
-            <p>Yth.</p>
+            <p>Yth. Daeng</p>
             <div class="btn-container">
                 <button class="btn" id="openBtn">Buka Surat</button>
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button id="closeBtn">X</button>
+            <button id="closeBtn"></button> <!-- Tombol tutup dengan X transparan -->
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
@@ -258,7 +259,6 @@
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
             headerContent.style.display = 'none';
-            document.body.style.background = 'none'; // Hapus background saat surat dibuka
             showSparkles();
         });
 
@@ -266,7 +266,6 @@
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
             headerContent.style.display = 'block';
-            document.body.style.background = 'url(\'https://raw.githubusercontent.com/H1Xploit/E-F/main/background.png\') no-repeat center center fixed';
         });
 
         // Efek percikan saat tombol ditekan
