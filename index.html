@@ -10,9 +10,8 @@
             padding: 0;
             font-family: 'Great Vibes', cursive;
             background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/bg.jpg');
-            background-size: cover;
+            background-size: contain; /* Menyesuaikan gambar agar tidak terpotong */
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Background tetap saat scroll */
             background-position: center;
             height: 100vh;
             display: flex;
@@ -20,25 +19,27 @@
             align-items: center;
             color: #fff;
             text-align: center;
+            overflow: hidden; /* Menghindari scroll jika background terlalu besar */
         }
 
         .container {
             background-color: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan untuk keterbacaan */
             padding: 40px;
             border-radius: 15px;
-            max-width: 800px;
-            width: 90%;
+            max-width: 90%;
+            width: 600px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin: 0 auto; /* Memastikan konten berada di tengah */
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         p {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             margin: 10px 0;
             line-height: 1.6;
             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
@@ -46,7 +47,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             p {
@@ -91,6 +92,7 @@
         <p>Yang Insya Allah akan dilaksanakan pada:</p>
         <p><strong>Senin, 7 Oktober 2024</strong></p>
         <p>Bertempat di rumah mempelai wanita</p>
+        <p>Jl. Contoh Alamat No. 123</p>
         <p>Atas kehadiran dan doa restunya, kami ucapkan terima kasih.</p>
     </div>
 
