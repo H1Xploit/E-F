@@ -45,14 +45,6 @@
             animation: fadeIn 3s ease-in-out;
         }
 
-        .scroll-down {
-            position: absolute;
-            bottom: 20px;
-            font-size: 1rem;
-            animation: bounce 2s infinite;
-            color: #8b5e34;
-        }
-
         /* Animasi */
         @keyframes fadeIn {
             from {
@@ -60,15 +52,6 @@
             }
             to {
                 opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
             }
         }
 
@@ -179,15 +162,16 @@
     <header>
         <h1>Undangan Pernikahan</h1>
         <p>Endi & Fauziah</p>
-        <p class="scroll-down">Klik tombol untuk membuka surat</p>
+        <div class="btn-container">
+            <button class="btn" id="openBtn">Buka Surat</button>
+        </div>
     </header>
 
     <section>
-        <div class="btn-container">
-            <button class="btn" id="openBtn">Buka Surat</button>
-            <button class="btn" id="closeBtn" style="display: none;">Tutup Surat</button>
-        </div>
         <div class="letter-container" id="letterContent">
+            <div class="btn-container">
+                <button class="btn" id="closeBtn">Tutup Surat</button>
+            </div>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
@@ -219,7 +203,6 @@
             letterContent.classList.remove('slide-up');
             letterContent.classList.add('slide-down');
             openBtn.style.display = 'none';
-            closeBtn.style.display = 'inline-block';
         });
 
         // Event listener untuk tombol tutup
@@ -228,9 +211,8 @@
             letterContent.classList.add('slide-up');
             setTimeout(() => {
                 letterContent.style.display = 'none';
+                openBtn.style.display = 'inline-block';
             }, 500); // Delay sesuai dengan durasi animasi
-            openBtn.style.display = 'inline-block';
-            closeBtn.style.display = 'none';
         });
 
         // XSS protection
