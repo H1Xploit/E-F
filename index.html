@@ -15,8 +15,7 @@
         /* Styling Umum */
         body {
             font-family: 'Great Vibes', cursive;
-            background: url('https://source.unsplash.com/random/1600x900') no-repeat center center fixed; /* Gambar latar belakang */
-            background-size: cover;
+            background-color: #f3efe1;
             color: #333;
             overflow: hidden;
             height: 100vh;
@@ -29,17 +28,16 @@
             place-items: center;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Latar belakang dengan transparansi */
-            border-radius: 10px;
+            background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
             position: relative;
             overflow: hidden;
         }
 
         .header-content {
             position: absolute;
-            bottom: 20px; /* Posisikan tombol lebih bawah */
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
         }
@@ -80,30 +78,34 @@
 
         /* Efek surat */
         .letter-container {
-            width: 80vw; /* Memperlebar isi surat */
-            height: 80vh; /* Sesuaikan tinggi untuk tampilan yang lebih baik */
+            width: 80%;
+            max-width: 600px;
+            height: 80%;
+            max-height: 800px;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
+            top: 0;
+            left: 0;
             background: #fff;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
             border: 5px solid #e6d8b8;
+            transform: scale(0.9);
+            opacity: 0;
+            transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
-            opacity: 0;
+            z-index: 5;
         }
 
         .letter-container.open {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
             opacity: 1;
         }
 
         .letter h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #8b5e34;
             margin-bottom: 1.5rem;
         }
@@ -121,21 +123,28 @@
             margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
         }
 
-        /* Tombol Tutup */
+        /* Tombol Tutup X Transparan */
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
+            width: 30px;
+            height: 30px;
             background: transparent;
             border: none;
-            font-size: 2rem;
             cursor: pointer;
-            color: #333;
-            transition: color 0.3s;
+            z-index: 6;
         }
 
-        .close-btn:hover {
-            color: #8b5e34;
+        .close-btn::before {
+            content: '×';
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
         }
 
         /* Animasi Percikan */
@@ -223,7 +232,10 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <button class="close-btn" id="closeBtn">&times;</button>
+            <button class="close-btn" id="closeBtn"></button>
+            <div class="btn-container btn-container-bottom">
+                <!-- Button Tutup diganti menjadi X transparan -->
+            </div>
             <div class="letter">
                 <h2>Salam Sejahtera,</h2>
                 <p>
