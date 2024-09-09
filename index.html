@@ -101,8 +101,8 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        .letter-container.close {
-            transform: translate(calc(-50% + 50px), calc(-50% + 50px)) scale(0.1);
+        .letter-container.closing {
+            transform: translate(calc(-50% + 20px), calc(-50% + 20px)) scale(0.1);
         }
 
         .letter h2 {
@@ -120,7 +120,6 @@
 
         .btn-container-bottom {
             margin-top: 2rem;
-            margin-bottom: 2rem;
         }
 
         /* Tombol tutup */
@@ -188,18 +187,6 @@
             }
             to {
                 opacity: 1;
-            }
-        }
-
-        @keyframes squeeze {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.5);
-            }
-            100% {
-                transform: scale(1);
             }
         }
 
@@ -285,7 +272,7 @@
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
-            letterContent.classList.remove('close');
+            letterContent.classList.remove('closing');
             headerContent.style.display = 'none';
             particles.style.display = 'block';
             // Membuat efek partikel
@@ -300,10 +287,12 @@
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
-            letterContent.classList.add('close');
-            letterContent.classList.remove('open');
+            letterContent.classList.add('closing');
             headerContent.style.display = 'block';
             particles.style.display = 'none';
+            setTimeout(() => {
+                letterContent.classList.remove('open');
+            }, 800); // Durasi animasi
         });
 
         // XSS protection
