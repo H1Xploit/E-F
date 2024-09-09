@@ -67,13 +67,13 @@
             border-radius: 5px;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: background-color 0.3s;
-            position: relative;
-            z-index: 20;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .btn:hover {
             background-color: #a66d45;
+            transform: scale(1.05);
         }
 
         /* Efek surat */
@@ -82,20 +82,20 @@
             height: 100%;
             position: absolute;
             top: 0;
-            left: 100%;
+            left: 0;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             padding: 2rem;
             text-align: center;
-            transform: translateX(100%);
-            transition: transform 0.5s ease-in-out;
+            border: 5px solid #e6d8b8;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1);
             overflow: hidden;
-            border: 2px solid #8b5e34;
         }
 
         .letter-container.open {
-            transform: translateX(0);
+            transform: translateY(0);
         }
 
         .letter h2 {
@@ -111,46 +111,58 @@
             margin-bottom: 1rem;
         }
 
-        /* Animasi */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .btn-container-bottom {
+            margin-top: 2rem;
+            margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
         }
 
-        @keyframes sparkle {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(1); }
-        }
-
-        .sparkle {
+        /* Animasi Percikan */
+        .sparkles {
             position: absolute;
-            pointer-events: none;
-            width: 20px;
-            height: 20px;
-            background-size: cover;
-            z-index: 30;
-            animation: sparkle 1s ease-out;
-        }
-
-        .love { background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cGF0aCBkPSJNNTAsNzAgYy0xNCwzMC0yNywyNy0yNyw2NiAwQy0xNCwtMTYtMjcsLTMzLDMwLTM2Yy0xMSw1MC0xOSwxMC0xOSwzMCwwQy00LDExLTIsMTktMzAsNjQuNGMtMTAuMiwxMC40LTE4LDEyLDE4LDEyYy0xMSw0LTMzLDMzLTY5LDE5Yy0xMCw0LTQsOCw0LTIsMTcuOGMtMTUuMiwyMC4yLTYsNTQuNCw2OC43Yy0xMywyMy02LDE5LDU0LjVhNiw0IDAgMCAxLTE4LTE2bDEyLDE5YzIwLDI4LDM5LDE1LDhBMTQsMTQgMCAwIDEgNzAsMTAgTTAsMTMuMiw0MC4zMyw1MS4yLDEwLDEwLjIgNC4xMiwxLjYsMy42LDAtMTguMWMwLDEuMiwxMSwyLjEsMTYuNiwxMy4yIGMzLjYsMS42LDEuNiwxLjcsMy4xYy01LDUuOC03LDEyLjcsNiw1LjF2M2MtMi43LDEuNy01LjMsMi4yLTUuNSw3LjRjLTEuOCwxLDEuNy0yLjcsMi4zLTIuOWMyLjIsMi44LDIuOSwyLjEsNi4yLDQuNGM0LjksNS4yLDEuOCw4LjMsMy4zLDEuOGMxLjYsMSwyLjItMSwzLjktMSw2LTIuOS0yLjUtNC43LTMuMSwzLjMtMS42LDEuNy00LDEuMWMtNy40LDEuOC0xMi4xLDEsMTctNS43LDE2LjEsMS4yLDEwLjQsMi4yLDE5LjQsMS43LDEyLDEuMiwzLDEuNiwxMSwyLjcsNy4xLDEuOSw2LjIsOC4xLDEuMyw2LjUtNy4zYy0xMSwzLTIwLDUuNS0xMi42LDE4LjQgYy0xLjYsMi43LTE0LjcsMi4zLTMuOSwzLjcuMiwyLjQsOC4zLDEuMiwyLjgsMC41LDEuMyw1LDEuOCwxLDguMyw4Yy0zLjIsNy40LDEuNiwyLjgsNi4yLDE1LjQsMTMuMiw1LjEsMTYuOCwzLjgsMi4zLDEzLDEuNyw2LDEuNiwxMCwxMC4xLDEuNiwyLjItMTEuMS0yLjQtMy42LTIsNy4yLDEuMiw0LjIsMTEuNiw4LjksMTUsNy4xLDQuMiwyLjIsMi4yLDEuNCw2LjIsNy4zLDEuMywwLDAsMCwwIi8+PC9zdmc+') no-repeat;
             top: 50%;
             left: 50%;
+            width: 0;
+            height: 0;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0;
             transform: translate(-50%, -50%);
         }
 
-        .star { background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cGF0aCBkPSJNNTAsMjAgTCA1MCwxMCA1MCwxMCA1MCwzMCBMIDAsNzAgMCA1MCwwIEwgNTAuMjUsNzAgQyA1MCwyMCA1MCwxMCA1MCwxMCBMIDAsMjAgTCAwLDEwIEwgNTAsMjAgTTAsMTAwIFoiIGZpbGw9IiMwMDAiIHN0cm9rZT0iIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lLWxpbmVjYXI9InJvdW5kIiBzdHJva2UtbGF5ZXI9Im5vbmUiLz48L3N2Zz4=') no-repeat;
-            top: 20%;
-            left: 70%;
+        .sparkles span {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border-radius: 50%;
+            animation: sparkle 1s linear infinite;
         }
 
-        .moon { background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cGF0aCBkPSJNNTAsNTAgQzUuMjQsNTAgNi41LDEyLjYgOC41LDE1IEwgMTAsNTAgTCA5LDEwIEwgMTAsMCAxMCw1IEM5LDUgNSwyLjIgNSwyLTIuNSBMIDAsNTAiIGZpbGw9IiM4N0EyMyIvPjwvc3ZnPg==') no-repeat;
-            top: 60%;
-            left: 30%;
+        .sparkles .heart {
+            background: url('https://img.icons8.com/emoji/48/000000/red-heart.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .sparkles .star {
+            background: url('https://img.icons8.com/emoji/48/000000/star.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .sparkles .moon {
+            background: url('https://img.icons8.com/emoji/48/000000/crescent-moon.png') no-repeat center;
+            background-size: contain;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(0, 0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(200px, -200px) scale(2);
+                opacity: 0;
+            }
         }
 
         /* Responsif */
@@ -183,7 +195,7 @@
             </div>
         </div>
         <div class="letter-container" id="letterContent">
-            <div class="btn-container">
+            <div class="btn-container btn-container-bottom">
                 <button class="btn" id="closeBtn">Tutup Surat</button>
             </div>
             <div class="letter">
@@ -203,6 +215,13 @@
                 </p>
             </div>
         </div>
+
+        <!-- Efek Percikan -->
+        <div class="sparkles" id="sparkles">
+            <span class="heart"></span>
+            <span class="star"></span>
+            <span class="moon"></span>
+        </div>
     </div>
 
     <script>
@@ -211,24 +230,13 @@
         const closeBtn = document.getElementById('closeBtn');
         const letterContent = document.getElementById('letterContent');
         const headerContent = document.getElementById('headerContent');
-
-        // Function to create sparkle effects
-        function createSparkle(x, y, className) {
-            const sparkle = document.createElement('div');
-            sparkle.className = `sparkle ${className}`;
-            sparkle.style.top = `${y}px`;
-            sparkle.style.left = `${x}px`;
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1000);
-        }
+        const sparkles = document.getElementById('sparkles');
 
         // Event listener untuk tombol buka
-        openBtn.addEventListener('click', function(event) {
+        openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
             headerContent.style.display = 'none';
-            createSparkle(event.clientX, event.clientY, 'love');
-            createSparkle(event.clientX, event.clientY, 'star');
-            createSparkle(event.clientX, event.clientY, 'moon');
+            showSparkles();
         });
 
         // Event listener untuk tombol tutup
@@ -236,6 +244,14 @@
             letterContent.classList.remove('open');
             headerContent.style.display = 'block';
         });
+
+        // Efek percikan saat tombol ditekan
+        function showSparkles() {
+            sparkles.style.opacity = 1;
+            setTimeout(() => {
+                sparkles.style.opacity = 0;
+            }, 1000);
+        }
 
         // XSS protection
         const urlParams = new URLSearchParams(window.location.search);
