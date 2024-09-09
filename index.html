@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
+            overflow: hidden; /* Menghindari scroll */
+        }
+
+        body {
             font-family: 'Great Vibes', cursive;
             background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/main/bg.jpg');
-            background-size: cover; /* Gambar latar penuh tanpa terpotong */
+            background-size: cover; /* Menyesuaikan gambar agar menutupi seluruh layar */
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Gambar latar tetap pada posisi saat scroll */
             background-position: center;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,12 +27,12 @@
 
         .container {
             background-color: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan untuk keterbacaan */
-            padding: 40px 20px;
+            padding: 40px;
             border-radius: 15px;
             max-width: 90%;
             width: 600px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            margin: 20px; /* Menambahkan margin untuk ruang di sekeliling */
+            margin: 0 auto;
         }
 
         h1 {
@@ -39,7 +42,7 @@
         }
 
         p {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             margin: 10px 0;
             line-height: 1.6;
             text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
