@@ -15,19 +15,23 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            height: 100%;
             font-family: 'Lora', serif;
-            background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/e9a7f6d028fcaf00d24446f536512c9fc2c83ab4/bg.svg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
             text-align: center;
             color: white;
+        }
+
+        body {
+            background-image: url('https://raw.githubusercontent.com/H1Xploit/E-F/e9a7f6d028fcaf00d24446f536512c9fc2c83ab4/bg.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            height: 100vh;
         }
 
         .container {
