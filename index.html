@@ -1,162 +1,77 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Wedding Invitation</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Lora', serif;
-            background-color: #f9f9f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            padding: 30px;
-            background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
+            font-family: Arial, sans-serif;
+            background-color: #002d72; /* Dark blue background */
+            color: #fff;
             text-align: center;
-            opacity: 0;
-            transition: opacity 2s;
-            position: relative;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgYXJlYS1saW5rLWFsaWduPSJtZWRpYSI+PGcgZmlsbC1ydWxlPSJub256b25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtY29sb3I9IiMwMDAiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyb3c9InVuZGVybm90b3BpY2FsIiBzdHJva2UtbGluZWNhcD0idG9wIiBzdHJva2UtbGluZWNhcD0iYm90dG9tIiBzdHJva2UtbGluZWNhcD0icm9vdCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAsMEwgNiw2IEwgMiwxMCAiIHN0cm9rZS1kYXNoYXJyb3c9InVuZGVybm90b3BpY2FsIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWNvbG9yPSIjMDAwIiBzdHJva2UtbGluZWNhcD0idG9wIiBzdHJva2UtbGluZWNhcD0iYm90dG9tIiBzdHJva2UtbGluZWNhcD0icm9vdCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWNvbG9yPSIjMDAwIiIvPjwvZz48L2c+PC9nPg==');
-            background-size: cover;
-            background-position: center;
         }
-
-        .gate {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100vh;
-            background-color: #b30000;
-            transition: width 2s;
-            z-index: 10;
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            border-radius: 10px;
         }
-
-        .gate.right {
-            left: auto;
-            right: 0;
-        }
-
         h1 {
-            font-size: 2.8em;
-            color: #b30000;
+            font-size: 3em;
             margin: 0;
-            font-family: 'Cinzel', serif;
-            line-height: 1.2;
+            color: #ffd700; /* Gold color */
+            text-shadow: 2px 2px 4px #000; /* Shadow effect */
         }
-
-        h2 {
-            font-size: 1.6em;
-            margin: 20px 0;
-            color: #555;
-            font-family: 'Roboto', sans-serif;
-        }
-
         p {
             font-size: 1.2em;
-            margin: 10px 0;
-            line-height: 1.6;
-            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
         }
-
-        .highlight {
-            color: #b30000;
-            font-weight: bold;
-        }
-
-        .names {
+        .details {
             margin: 20px 0;
         }
-
-        .names .name {
-            display: inline-block;
-            font-size: 2.5em;
-            margin: 0 10px;
-            font-family: 'Cinzel', serif;
+        .details h2 {
+            font-size: 2em;
+            margin: 0;
+            color: #ffd700; /* Gold color */
+            text-shadow: 1px 1px 2px #000; /* Shadow effect */
         }
-
-        .names .ampersand {
-            font-size: 2.8em;
-            color: #b30000;
+        .details p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
             font-weight: bold;
         }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2em;
-            }
-
-            .names .name {
-                font-size: 2em;
-            }
-
-            .names .ampersand {
-                font-size: 2.5em;
-            }
-
-            h2 {
-                font-size: 1.4em;
-            }
-
-            p {
-                font-size: 1em;
-            }
-        }
     </style>
-    <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            let value = urlParams.get(param);
-            // Mencegah XSS dengan encoding karakter
-            if (value) {
-                value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            }
-            return value;
-        }
-
-        function openGates() {
-            document.querySelectorAll('.gate').forEach(gate => {
-                gate.style.width = '0';
-            });
-            document.querySelector('.container').style.opacity = '1';
-        }
-
-        window.onload = function() {
-            const penerima = getQueryParam('to') || 'Tamu Undangan';
-            document.getElementById('penerima').textContent = penerima;
-            setTimeout(openGates, 500);
-        };
-    </script>
 </head>
 <body>
-    <div class="gate"></div>
-    <div class="gate right"></div>
-
     <div class="container">
-        <div class="names">
-            <h1 class="name">Endi Waluyo</h1>
-            <span class="ampersand">&amp;</span>
-            <h1 class="name">Fauziah</h1>
+        <h1>You're Invited!</h1>
+        <p>Join us for the celebration of love as we unite in marriage.</p>
+        <div class="details">
+            <h2>Wedding Ceremony</h2>
+            <p>Date: October 15, 2024</p>
+            <p>Time: 5:00 PM</p>
+            <p>Venue: The Grand Hall</p>
         </div>
-        <h2>Dengan segala hormat, kami mengundang:</h2>
-        <p id="penerima">Tamu Undangan</p>
-        <p>Untuk menghadiri acara akad nikah kami yang akan diselenggarakan pada:</p>
-        <p class="highlight">7 Oktober 2024</p>
-        <p>di kediaman mempelai wanita.</p>
-        <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+        <div class="details">
+            <h2>Reception</h2>
+            <p>Date: October 15, 2024</p>
+            <p>Time: 7:00 PM</p>
+            <p>Venue: The Grand Hall</p>
+        </div>
+        <div class="footer">
+            <p>For more details, visit <a href="#">our wedding website</a>.</p>
+        </div>
     </div>
 </body>
 </html>
