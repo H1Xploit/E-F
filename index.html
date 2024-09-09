@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Endi & Fauziah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Reset CSS */
         * {
@@ -14,7 +15,7 @@
 
         /* Styling umum */
         body {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Open Sans', sans-serif;
             background-color: #f8f4e3;
             color: #333;
             overflow-x: hidden;
@@ -31,20 +32,24 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
             margin-bottom: 1rem;
+            color: #b86b77;
             animation: fadeIn 2s ease-in-out;
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             animation: fadeIn 3s ease-in-out;
+            color: #6b5b95;
         }
 
         .scroll-down {
             position: absolute;
             bottom: 20px;
             font-size: 1rem;
+            color: #6b5b95;
             animation: bounce 2s infinite;
         }
 
@@ -80,17 +85,13 @@
         .letter-container {
             width: 100%;
             max-width: 600px;
-            height: 0;
-            padding-bottom: 100%;
             position: relative;
-            overflow: hidden;
         }
 
         .letter {
             position: absolute;
             top: -100%;
             width: 100%;
-            height: 100%;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -99,14 +100,32 @@
         }
 
         .scrollable {
-            padding: 20px;
-            overflow: auto;
-            height: 100%;
+            padding: 30px;
+            overflow: hidden;
+        }
+
+        .scrollable h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #b86b77;
+            margin-bottom: 1rem;
+        }
+
+        .scrollable p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .scrollable strong {
+            font-weight: bold;
+            color: #b86b77;
         }
 
         /* Animasi scroll */
         body.scrolled .letter {
-            transform: translateY(100%);
+            transform: translateY(0);
         }
 
         body.scrolled-up .letter {
@@ -116,23 +135,28 @@
         /* Responsif */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
-            p {
+            .scrollable h2 {
+                font-size: 2rem;
+            }
+
+            .scrollable p {
                 font-size: 1rem;
             }
+        }
 
-            .letter-container {
-                padding-bottom: 150%;
-            }
+        /* Auto scroll behavior */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Undangan Pernikahan</h1>
-        <p>Endi & Fauziah</p>
+        <h1>Endi & Fauziah</h1>
+        <p>Undangan Pernikahan</p>
         <p class="scroll-down">Scroll untuk membuka surat</p>
     </header>
 
@@ -162,14 +186,17 @@
     <script>
         // Scroll animation
         let lastScrollTop = 0;
+        let scrollTriggered = false;
         window.addEventListener("scroll", function() {
             let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st > lastScrollTop) {
+            if (st > lastScrollTop && !scrollTriggered) {
                 document.body.classList.add('scrolled');
                 document.body.classList.remove('scrolled-up');
-            } else {
+                scrollTriggered = true;
+            } else if (st < lastScrollTop && scrollTriggered) {
                 document.body.classList.add('scrolled-up');
                 document.body.classList.remove('scrolled');
+                scrollTriggered = false;
             }
             lastScrollTop = st <= 0 ? 0 : st;
         }, false);
@@ -181,6 +208,14 @@
             const safeName = yth.replace(/[<>]/g, "");
             document.querySelector('p').innerHTML = `Yth. ${safeName}`;
         }
+
+        // Auto scroll to section
+        const headerHeight = document.querySelector('header').offsetHeight;
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > headerHeight - 100) {
+                document.querySelector('.letter').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     </script>
 </body>
 </html>
