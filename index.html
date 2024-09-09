@@ -20,46 +20,39 @@
             overflow: hidden;
             height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            justify-content: center;
         }
 
         .content-wrapper {
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(to bottom, #fff5e6, #e6d8b8);
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .header-content {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
+        .main-content {
+            text-align: center;
+            padding: 2rem;
         }
 
-        .header-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .main-content h1 {
+            font-size: 4rem;
             color: #8b5e34;
+            margin-bottom: 1rem;
             animation: fadeIn 2s ease-in-out;
         }
 
-        .header-content p {
-            font-size: 2rem;
+        .main-content p {
+            font-size: 1.5rem;
             color: #8b5e34;
             margin-bottom: 2rem;
-            font-family: 'Roboto', sans-serif; /* Mengganti font isi surat */
-            font-weight: bold;
+            animation: fadeIn 3s ease-in-out;
         }
 
         .btn-container {
@@ -87,6 +80,9 @@
         .letter-container {
             width: 100%;
             height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -98,7 +94,6 @@
             transform-origin: top;
             transition: transform 0.8s cubic-bezier(0.42, 0, 0.58, 1), opacity 0.8s;
             overflow: hidden;
-            position: relative;
         }
 
         .letter-container.open {
@@ -121,18 +116,21 @@
         }
 
         .letter-container .letter {
-            margin-top: 4rem; /* Menambahkan margin atas untuk isi surat */
+            margin-top: 2rem; /* Menambahkan margin atas untuk isi surat */
         }
 
         .btn-container-bottom {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            margin-top: 2rem;
+            margin-bottom: 2rem; /* Memberikan ruang di bagian bawah tombol */
+            position: relative;
         }
 
         .close-btn {
             background: none;
             border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
             cursor: pointer;
             width: 40px;
             height: 40px;
@@ -209,12 +207,12 @@
 
         /* Responsif */
         @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2.5rem;
+            .main-content h1 {
+                font-size: 3rem;
             }
 
-            .header-content p {
-                font-size: 1.5rem;
+            .main-content p {
+                font-size: 1.2rem;
             }
 
             .letter h2 {
@@ -224,30 +222,16 @@
             .letter p {
                 font-size: 1rem;
             }
-
-            .btn {
-                padding: 0.5rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .letter-container {
-                padding: 1rem;
-            }
-
-            .btn-container-bottom {
-                top: 5px;
-                right: 5px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="content-wrapper">
-        <div class="header-content">
-            <h1>Undangan Pernikahan</h1>
-            <p>Endi & Fauziah</p>
+        <div class="main-content" id="mainContent">
+            <h1>Endi & Fauziah</h1>
+            <p>Penerima</p>
             <div class="btn-container">
-                <button class="btn" id="openBtn">Buka Surat</button>
+                <button class="btn" id="openBtn">Buka Undangan</button>
             </div>
         </div>
         <div class="letter-container" id="letterContent">
@@ -289,17 +273,20 @@
         const openBtn = document.getElementById('openBtn');
         const closeBtn = document.getElementById('closeBtn');
         const letterContent = document.getElementById('letterContent');
+        const mainContent = document.getElementById('mainContent');
         const sparkles = document.getElementById('sparkles');
 
         // Event listener untuk tombol buka
         openBtn.addEventListener('click', function() {
             letterContent.classList.add('open');
+            mainContent.style.display = 'none';
             showSparkles();
         });
 
         // Event listener untuk tombol tutup
         closeBtn.addEventListener('click', function() {
             letterContent.classList.remove('open');
+            mainContent.style.display = 'flex';
         });
 
         // Efek percikan saat tombol ditekan
@@ -308,14 +295,6 @@
             setTimeout(() => {
                 sparkles.style.opacity = 0;
             }, 1000);
-        }
-
-        // XSS protection
-        const urlParams = new URLSearchParams(window.location.search);
-        const yth = urlParams.get('yth');
-        if (yth) {
-            const safeName = yth.replace(/[<>]/g, "");
-            document.querySelector('p').innerHTML = `Endi & Fauziah`;
         }
     </script>
 </body>
